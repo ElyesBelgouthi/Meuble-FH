@@ -1,0 +1,367 @@
+<section
+  id="intro-container"
+  class="lg:h-screen h-96 w-full bg-cover relative overflow-hidden"
+  style="
+    background: url('../../../assets/images/bg.jpg');
+    background-size: cover;
+  "
+>
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="absolute inset-0 bg-blue-dark opacity-30"></div>
+    <div class="text-center text-gray-50 relative z-10">
+      <h1 class="text-4xl lg:text-6xl font-bold leading-tight lg:mb-8 mb-2">
+        Meuble FH
+      </h1>
+      <p class="text-lg lg:text-xl lg:mb-8 mb-4">Transformer le Bois en Art</p>
+      <a
+        href="#"
+        class="bg-gradient-to-r from-blue-500 to-blue-dark hover:from-blue-dark hover:to-blue-500 hover:translate-x-2 hover:text-white lg:text-xl text-md font-semibold lg:py-4 lg:px-6 py-2 px-3 rounded-full shadow-md mt-6 transition-transform duration-1000 ease-linear cursor-pointer font-sans"
+      >
+        Voir plus
+      </a>
+    </div>
+  </div>
+</section>
+
+<section
+  id="slider-container"
+  class="bg-gray-50 h-[580px] w-full items-center flex"
+>
+  <div class="lg:px-28 px-6 py-12 flex flex-row h-full w-full">
+    <div class="h-full w-2 flex flex-col gap-1">
+      <div
+        (click)="toggleSlideNumber(0)"
+        [class.bg-blue-dark]="slideNumber === 0"
+        [class.bg-orange-500]="slideNumber !== 0"
+        [class.hover:bg-blue-dark]="slideNumber === 0"
+        [class.hover:bg-orange-500]="slideNumber !== 0"
+        [class.animate-top-to-bottom]="slideNumber === 0"
+        [class.animate-bottom-to-top]="slideNumber !== 0"
+        class="w-3 h-1/5 cursor-pointer transform ease-linear duration-300"
+      ></div>
+      <div
+        (click)="toggleSlideNumber(1)"
+        [class.bg-blue-dark]="slideNumber === 1"
+        [class.bg-orange-500]="slideNumber !== 1"
+        [class.hover:bg-blue-dark]="slideNumber === 1"
+        [class.hover:bg-orange-500]="slideNumber !== 1"
+        [class.animate-top-to-bottom]="slideNumber === 1"
+        [class.animate-bottom-to-top]="slideNumber !== 1"
+        class="w-3 h-1/5 cursor-pointer transform ease-linear duration-300"
+      ></div>
+      <div
+        (click)="toggleSlideNumber(2)"
+        [class.bg-blue-dark]="slideNumber === 2"
+        [class.bg-orange-500]="slideNumber !== 2"
+        [class.hover:bg-blue-dark]="slideNumber === 2"
+        [class.hover:bg-orange-500]="slideNumber !== 2"
+        [class.animate-top-to-bottom]="slideNumber === 2"
+        [class.animate-bottom-to-top]="slideNumber !== 2"
+        class="w-3 h-1/5 cursor-pointer transform ease-linear duration-300"
+      ></div>
+      <div
+        (click)="toggleSlideNumber(3)"
+        [class.bg-blue-dark]="slideNumber === 3"
+        [class.bg-orange-500]="slideNumber !== 3"
+        [class.hover:bg-blue-dark]="slideNumber === 3"
+        [class.hover:bg-orange-500]="slideNumber !== 3"
+        [class.animate-top-to-bottom]="slideNumber === 3"
+        [class.animate-bottom-to-top]="slideNumber !== 3"
+        class="w-3 h-1/5 cursor-pointer transform ease-linear duration-300"
+      ></div>
+      <div
+        (click)="toggleSlideNumber(4)"
+        [class.bg-blue-dark]="slideNumber === 4"
+        [class.bg-orange-500]="slideNumber !== 4"
+        [class.hover:bg-blue-dark]="slideNumber === 4"
+        [class.hover:bg-orange-500]="slideNumber !== 4"
+        [class.animate-top-to-bottom]="slideNumber === 4"
+        [class.animate-bottom-to-top]="slideNumber !== 4"
+        class="w-3 h-1/5 cursor-pointer transform ease-linear duration-300"
+      ></div>
+    </div>
+    <div class="app-slide">
+      <app-slide
+        [@fadeAnimation]="slideNumber"
+        *ngIf="slideNumber === 0"
+        [slide]="slides[0]"
+        class=""
+      ></app-slide>
+      <app-slide
+        [@fadeAnimation]="slideNumber"
+        *ngIf="slideNumber === 1"
+        [slide]="slides[1]"
+        class=""
+      ></app-slide>
+      <app-slide
+        [@fadeAnimation]="slideNumber"
+        *ngIf="slideNumber === 2"
+        [slide]="slides[2]"
+        class=""
+      ></app-slide>
+      <app-slide
+        [@fadeAnimation]="slideNumber"
+        *ngIf="slideNumber === 3"
+        [slide]="slides[3]"
+        class=""
+      ></app-slide>
+      <app-slide
+        [@fadeAnimation]="slideNumber"
+        *ngIf="slideNumber === 4"
+        [slide]="slides[4]"
+        class=""
+      ></app-slide>
+    </div>
+  </div>
+</section>
+
+<section
+  id="atelier-info"
+  class="lg:h-[750px] w-full px-9 py-20 text-center bg-blue-dark"
+>
+  <h1 class="text-orange-500 font-bold lg:text-[100px] text-3xl">
+    Notre Catalogue
+  </h1>
+  <div
+    class="flex px-20 lg:flex-row flex-col gap-7 justify-between items-center mt-28"
+  >
+    <div
+      class="relative group bg-beige lg:h-60 lg:w-60 lg:p-10 h-40 w-40 p-6 rounded-full cursor-pointer"
+    >
+      <svg
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 512 512"
+        style="enable-background: new 0 0 512 512"
+        xml:space="preserve"
+        class="group-hover:hidden transition duration-700 ease-in-out"
+      >
+        <g>
+          <g>
+            <path
+              d="M487.849,197.794h-28.056c-3.571-13.574-15.945-23.614-30.624-23.614h-31.482V83.57c0-19.825-16.128-35.953-35.953-35.953
+   c-16.134,0-29.817,10.683-34.354,25.346h-13.123c-3.568,0-6.711,2.349-7.721,5.77l-10.458,35.421
+   c-0.718,2.434-0.246,5.065,1.273,7.099c1.52,2.033,3.91,3.231,6.449,3.231h60.064c2.539,0,4.929-1.198,6.449-3.231
+   c1.519-2.034,1.99-4.665,1.272-7.099l-10.457-35.421c-1.01-3.422-4.153-5.77-7.721-5.77h-8.426
+   c3.524-5.547,9.709-9.246,16.752-9.246c10.947,0,19.853,8.906,19.853,19.853v90.61h-31.482c-14.679,0-27.053,10.04-30.624,23.614
+   H216.95v-28.408c0-4.446-3.603-8.05-8.05-8.05H65.069c-4.447,0-8.05,3.604-8.05,8.05v28.408H24.151
+   C10.835,197.794,0,208.628,0,221.945v20.466c0,12.287,9.224,22.452,21.11,23.953v189.969c0,4.446,3.603,8.05,8.05,8.05h41.872
+   c4.447,0,8.05-3.604,8.05-8.05v-54.921h353.844v54.921c0,4.446,3.603,8.05,8.05,8.05h41.872c4.446,0,8.05-3.604,8.05-8.05v-189.97
+   C502.78,264.858,512,254.694,512,242.412v-20.466C512,208.629,501.165,197.794,487.849,197.794z M347.39,89.065l5.704,19.32
+   H314.57l5.704-19.32H347.39z M350.106,190.281h79.064c5.637,0,10.584,3.013,13.315,7.513H336.79
+   C339.52,193.295,344.469,190.281,350.106,190.281z M73.118,177.437h127.73v20.357H73.118V177.437z M62.982,448.283H37.21v-181.72
+   h25.771V448.283z M432.927,385.313H79.082v-118.75h353.844V385.313z M474.798,448.283h-25.771v-181.72h25.771V448.283z
+    M495.9,242.412c0,4.439-3.611,8.05-8.05,8.05H24.151c-4.439,0-8.05-3.611-8.05-8.05v-20.466c0-4.439,3.611-8.05,8.05-8.05
+   h463.699c4.439,0,8.05,3.611,8.05,8.05V242.412z"
+              fill="#102C57"
+            />
+          </g>
+        </g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+      </svg>
+      <div
+        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-700 ease-in-out text-3xl font-semibold text-blue-dark bg-orange-500 rounded-full"
+      >
+        Bureau
+      </div>
+    </div>
+    <div
+      class="relative group bg-beige lg:h-60 lg:w-60 lg:p-10 h-40 w-40 p-6 rounded-full cursor-pointer"
+    >
+      <svg
+        version="1.1"
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 448 448"
+        style="enable-background: new 0 0 448 448"
+        xml:space="preserve"
+        class="group-hover:hidden transition duration-700 ease-in-out"
+      >
+        <g>
+          <path
+            d="M280,307.999h-15.997c-4.418,0-8,3.582-8,8s3.582,8,8,8H280c4.418,0,8-3.582,8-8S284.418,307.999,280,307.999z"
+            fill="#102C57"
+          />
+          <path
+            d="M396,164c-1.347,0-2.678,0.068-4,0.169V68c0-30.879-25.122-56-56-56H112c-30.878,0-56,25.121-56,56v96.169
+          c-1.322-0.101-2.653-0.169-4-0.169c-28.673,0-52,23.327-52,52c0,17.936,9.079,34.304,24,43.815v105.518
+          c0,0.358,0.032,0.709,0.078,1.055C25.318,387.335,42.746,404,64,404v8c0,13.233,10.766,24,24,24s24-10.767,24-24v-8h224v8
+          c0,13.233,10.766,24,24,24s24-10.767,24-24v-8c21.254,0,38.682-16.665,39.922-37.612c0.046-0.346,0.078-0.697,0.078-1.055V259.815
+          c14.921-9.512,24-25.88,24-43.815C448,187.327,424.673,164,396,164z M72,68c0-22.056,17.944-40,40-40h224c22.056,0,40,17.944,40,40
+          v100.005c-18.773,7.853-32,26.406-32,47.995v36.022c-6.69-5.034-15.002-8.022-24-8.022H128c-8.998,0-17.31,2.988-24,8.022V216
+          c0-21.589-13.227-40.142-32-47.995V68z M96,412c0,4.411-3.589,8-8,8s-8-3.589-8-8v-8h16V412z M368,412c0,4.411-3.589,8-8,8
+          s-8-3.589-8-8v-8h16V412z M412.358,248.064c-2.675,1.368-4.358,4.119-4.358,7.123V364c0,13.233-10.766,24-24,24H64
+          c-13.234,0-24-10.767-24-24V255.188c0-3.004-1.683-5.755-4.358-7.123C23.526,241.869,16,229.583,16,216c0-19.851,16.149-36,36-36
+          s36,16.149,36,36v68.001l0,0.001c0.001,22.055,17.944,39.997,40,39.997h103.998c4.418,0,8-3.582,8-8s-3.582-8-8-8H128
+          c-13.233,0-24-10.766-24-23.999s10.767-24,24-24h192c13.233,0,24,10.767,24,24s-10.767,23.999-24,23.999h-8c-4.418,0-8,3.582-8,8
+          s3.582,8,8,8h8c22.055,0,39.999-17.942,40-39.997l0-0.001V216c0-19.851,16.149-36,36-36s36,16.149,36,36
+          C432,229.583,424.474,241.869,412.358,248.064z"
+            fill="#102C57"
+          />
+        </g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+      </svg>
+      <div
+        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-700 ease-in-out text-3xl font-semibold text-blue-dark bg-orange-500 rounded-full"
+      >
+        Chaise
+      </div>
+    </div>
+    <div
+      class="relative group bg-beige lg:h-60 lg:w-60 lg:p-10 h-40 w-40 p-6 rounded-full cursor-pointer"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        version="1.1"
+        x="0px"
+        y="0px"
+        viewBox="0 0 60 75"
+        enable-background="new 0 0 60 60"
+        xml:space="preserve"
+        class="group-hover:hidden transition duration-700 ease-in-out"
+      >
+        <g>
+          <path
+            d="M52.24,1l-1.79-0.89c-0.01-0.01-0.03-0.01-0.04-0.01c-0.02-0.01-0.04-0.02-0.07-0.02c-0.1-0.04-0.2-0.06-0.3-0.06   C50.03,0.01,50.01,0,50,0h-3c-0.55,0-1,0.45-1,1H14c0-0.55-0.45-1-1-1h-3C9.99,0,9.97,0.01,9.96,0.01c-0.1,0-0.2,0.02-0.3,0.06   C9.63,0.08,9.61,0.08,9.59,0.09C9.58,0.1,9.56,0.1,9.55,0.11L7.76,1H0v59h5v-2.38l4.55,2.28c0.01,0,0.02,0,0.03,0.01   C9.71,59.96,9.85,60,10,60h3c0.55,0,1-0.45,1-1v-2h32v2c0,0.55,0.45,1,1,1h3c0.15,0,0.29-0.04,0.42-0.1c0.01,0,0.02,0,0.03-0.01   L55,57.62V60h5V1H52.24z M46,3v1H31h-2H14V3H46z M46,14H31V6h15V14z M46,24H31v-8h15V24z M46,34h-1.18c0.11-0.31,0.18-0.65,0.18-1   c0-0.77-0.3-1.47-0.78-2C44.7,30.47,45,29.77,45,29c0-1.65-1.35-3-3-3h4V34z M34,33c0-0.55,0.45-1,1-1h7c0.55,0,1,0.45,1,1   s-0.45,1-1,1h-7C34.45,34,34,33.55,34,33z M42,30h-7c-0.55,0-1-0.45-1-1s0.45-1,1-1h7c0.55,0,1,0.45,1,1S42.55,30,42,30z M32,29   c0,0.77,0.3,1.47,0.78,2C32.3,31.53,32,32.23,32,33c0,0.35,0.07,0.69,0.18,1H31v-8h4C33.35,26,32,27.35,32,29z M29,26v8v2v8h-1.18   c0.11-0.31,0.18-0.65,0.18-1c0-1.65-1.35-3-3-3h-7c-1.65,0-3,1.35-3,3c0,0.35,0.07,0.69,0.18,1H14V21h2v2c0,0.55,0.45,1,1,1   s1-0.45,1-1v-2h1v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2h1v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2h1v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2h2v3   V26z M17,43c0-0.55,0.45-1,1-1h7c0.55,0,1,0.45,1,1s-0.45,1-1,1h-7C17.45,44,17,43.55,17,43z M29,19h-2v-1c0-0.55-0.45-1-1-1   s-1,0.45-1,1v1h-1v-1c0-0.55-0.45-1-1-1s-1,0.45-1,1v1h-1v-1c0-0.55-0.45-1-1-1s-1,0.45-1,1v1h-1v-1c0-0.55-0.45-1-1-1s-1,0.45-1,1   v1h-2v-3h15V19z M29,14H14V6h15V14z M14,46h4h7h4v6H14V46z M31,46h15v6H31V46z M46,44H31v-8h4h7h4V44z M3,58H2V3h1.76L3.55,3.11   c0,0,0,0,0,0L3,3.38V4v52V58z M5,4.62l4-2v54.76l-4-2V4.62z M12,58h-1V2h1v2v50v3V58z M14,55v-1h15h2h15v1H14z M48,57v-3v-8V36v-2   v-8v-2v-8v-2V4V2h1v56h-1V57z M51,57.38V2.62l4,2v50.76L51,57.38z M58,58h-1v-2V4V3.38l-0.55-0.28c0,0,0,0,0,0L56.24,3H58V58z"
+            fill="#102C57"
+          />
+          <path
+            d="M33,13h11c0.55,0,1-0.45,1-1s-0.45-1-1-1H33c-0.55,0-1,0.45-1,1S32.45,13,33,13z"
+            fill="#102C57"
+          />
+        </g>
+      </svg>
+      <div
+        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-700 ease-in-out text-3xl font-semibold text-blue-dark bg-orange-500 rounded-full"
+      >
+        Étagère
+      </div>
+    </div>
+    <div
+      class="relative group bg-beige lg:h-60 lg:w-60 lg:p-10 h-40 w-40 p-6 rounded-full cursor-pointer"
+    >
+      <svg
+        viewBox="0 0 512 512"
+        style="enable-background: new 0 0 512 512"
+        xml:space="preserve"
+        class="group-hover:hidden transition duration-700 ease-in-out"
+      >
+        <path
+          d="m504.5 250h-497c-4.140625 0-7.5 3.355469-7.5 7.5v62.5c0 4.144531 3.359375 7.5 7.5 7.5s7.5-3.355469 7.5-7.5v-25h482v202h-482v-144.667969c0-4.140625-3.359375-7.5-7.5-7.5s-7.5 3.359375-7.5 7.5v152.167969c0 4.144531 3.359375 7.5 7.5 7.5h497c4.144531 0 7.5-3.355469 7.5-7.5v-247c0-4.144531-3.355469-7.5-7.5-7.5zm-489.5 30v-15h482v15zm0 0"
+          fill="#102C57"
+        />
+        <path
+          d="m504.5 0h-497c-4.140625 0-7.5 3.355469-7.5 7.5v30c0 4.144531 3.359375 7.5 7.5 7.5h91v45.640625c-22.355469 1.789063-40 20.550781-40 43.359375 0 6.339844 5.160156 11.5 11.5 11.5h13.503906c-.003906.144531-.003906.285156-.003906.429688 0 12.40625 10.09375 22.5 22.5 22.5s22.5-10.09375 22.5-22.5c0-.144532-.003906-.285157-.003906-.429688h13.503906c6.339844 0 11.5-5.160156 11.5-11.5 0-22.808594-17.644531-41.570312-40-43.359375v-45.640625h135v45.640625c-22.355469 1.789063-40 20.550781-40 43.359375 0 6.339844 5.160156 11.5 11.5 11.5h13.503906c-.003906.144531-.003906.285156-.003906.429688 0 12.40625 10.09375 22.5 22.5 22.5s22.5-10.09375 22.5-22.5c0-.144532-.003906-.285157-.003906-.429688h13.503906c6.339844 0 11.5-5.160156 11.5-11.5 0-22.808594-17.644531-41.570312-40-43.359375v-45.640625h88.5c4.144531 0 7.5-3.355469 7.5-7.5s-3.355469-7.5-7.5-7.5h-337v-15h482v15h-113c-4.144531 0-7.5 3.355469-7.5 7.5s3.355469 7.5 7.5 7.5h14.5v45.640625c-22.355469 1.789063-40 20.550781-40 43.359375 0 6.339844 5.160156 11.5 11.5 11.5h13.503906c-.003906.144531-.003906.285156-.003906.429688 0 12.40625 10.09375 22.5 22.5 22.5s22.5-10.09375 22.5-22.5c0-.144532-.003906-.285157-.003906-.429688h13.503906c6.339844 0 11.5-5.160156 11.5-11.5 0-22.808594-17.644531-41.570312-40-43.359375v-45.640625h91c4.144531 0 7.5-3.355469 7.5-7.5v-30c0-4.144531-3.355469-7.5-7.5-7.5zm-391 145.929688c0 4.136718-3.363281 7.5-7.5 7.5s-7.5-3.363282-7.5-7.5c0-.144532.003906-.289063.011719-.429688h14.976562c.007813.140625.011719.285156.011719.429688zm24.785156-15.429688h-19.433594c-.085937 0-.171874 0-.261718 0h-25.171875c-.09375-.003906-.183594-.003906-.277344 0h-19.425781c1.730468-14.070312 13.753906-25 28.285156-25h8c14.53125 0 26.554688 10.929688 28.285156 25zm125.214844 15.429688c0 4.136718-3.363281 7.5-7.5 7.5s-7.5-3.363282-7.5-7.5c0-.144532.003906-.289063.011719-.429688h14.976562c.007813.140625.011719.285156.011719.429688zm24.785156-15.429688h-19.460937c-.070313 0-.140625 0-.210938 0h-25.195312c-.09375-.003906-.183594-.003906-.277344 0h-19.425781c1.726562-14.070312 13.753906-25 28.285156-25h8c14.53125 0 26.554688 10.929688 28.285156 25zm125.214844 15.429688c0 4.136718-3.363281 7.5-7.5 7.5s-7.5-3.363282-7.5-7.5c0-.144532.003906-.289063.011719-.429688h14.976562c.007813.140625.011719.285156.011719.429688zm24.785156-15.429688h-19.460937c-.070313 0-.140625 0-.210938 0h-25.226562c-.070313 0-.140625 0-.210938 0h-19.460937c1.730468-14.070312 13.757812-25 28.285156-25h8c14.53125 0 26.554688 10.929688 28.285156 25zm0 0"
+          fill="#102C57"
+        />
+        <path
+          d="m241 482c4.140625 0 7.5-3.355469 7.5-7.5v-157c0-4.144531-3.359375-7.5-7.5-7.5h-203.5c-4.140625 0-7.5 3.355469-7.5 7.5v157c0 4.144531 3.359375 7.5 7.5 7.5zm-196-157h188.5v142h-188.5zm0 0"
+          fill="#102C57"
+        />
+        <path
+          d="m211 340h-143.5c-4.140625 0-7.5 3.355469-7.5 7.5v97c0 4.144531 3.359375 7.5 7.5 7.5h143.5c4.140625 0 7.5-3.355469 7.5-7.5v-97c0-4.144531-3.359375-7.5-7.5-7.5zm-7.5 97h-128.5v-82h128.5zm0 0"
+          fill="#102C57"
+        />
+        <path
+          d="m448 482h26.5c4.144531 0 7.5-3.355469 7.5-7.5v-157c0-4.144531-3.355469-7.5-7.5-7.5h-203.5c-4.144531 0-7.5 3.355469-7.5 7.5v157c0 4.144531 3.355469 7.5 7.5 7.5h145c4.144531 0 7.5-3.355469 7.5-7.5s-3.355469-7.5-7.5-7.5h-137.5v-142h188.5v142h-19c-4.144531 0-7.5 3.355469-7.5 7.5s3.355469 7.5 7.5 7.5zm0 0"
+          fill="#102C57"
+        />
+        <path
+          d="m452 444.5v-97c0-4.144531-3.355469-7.5-7.5-7.5h-143.5c-4.144531 0-7.5 3.355469-7.5 7.5v97c0 4.144531 3.355469 7.5 7.5 7.5h143.5c4.144531 0 7.5-3.355469 7.5-7.5zm-15-7.5h-128.5v-82h128.5zm0 0"
+          fill="#102C57"
+        />
+      </svg>
+      <div
+        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-700 ease-in-out text-3xl font-semibold text-blue-dark bg-orange-500 rounded-full"
+      >
+        Comptoir
+      </div>
+    </div>
+  </div>
+</section>
+
+<section
+  id="infos-container"
+  class="bg-beige lg:h-[800px] w-full text-center px-9 py-20 flex items-center flex-col"
+>
+  <h1 class="text-blue-dark font-bold lg:text-[100px] text-3xl">
+    Nos Services
+  </h1>
+  <div class="mt-20 flex lg:flex-row flex-col gap-9 p-17 text-gray-50">
+    <div
+      class="flex flex-col justify-evenly items-center p-8 bg-blue-dark shadow-2xl min-h-[96px] lg:h-[450px] max-w-[400px]"
+    >
+      <i class="fa-solid fa-bolt text-2xl"></i>
+      <h1 class="font-bold text-2xl">Rapides</h1>
+
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
+        dignissimos fugit atque molestiae non. Aliquam eaque exercitationem
+        inventore minus saepe! Facere debitis id quasi iste. Consequuntur dolore
+        quae ex reprehenderit.
+      </p>
+    </div>
+    <div
+      class="flex flex-col justify-evenly items-center p-8 bg-blue-dark shadow-2xl min-h-[96px] h-[450px] max-w-[400px]"
+    >
+      <i class="fa-solid fa-circle-check text-2xl"></i>
+      <h1 class="font-bold text-2xl">Fiables</h1>
+
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
+        dignissimos fugit atque molestiae non. Aliquam eaque exercitationem
+        inventore minus saepe! Facere debitis id quasi iste. Consequuntur dolore
+        quae ex reprehenderit.
+      </p>
+    </div>
+    <div
+      class="flex flex-col justify-evenly items-center p-8 bg-blue-dark shadow-2xl min-h-[96px] lg:h-[450px] max-w-[400px]"
+    >
+      <i class="fa-solid fa-arrows-split-up-and-left text-2xl"></i>
+      <h1 class="font-bold text-2xl">Flexibles</h1>
+
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
+        dignissimos fugit atque molestiae non. Aliquam eaque exercitationem
+        inventore minus saepe! Facere debitis id quasi iste. Consequuntur dolore
+        quae ex reprehenderit.
+      </p>
+    </div>
+  </div>
+</section>

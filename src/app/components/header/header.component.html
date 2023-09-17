@@ -1,0 +1,142 @@
+<header
+  class="bg-beige shadow-lg fixed top-0 px-10 h-20 m-0 w-screen flex flex-row justify-between items-center font-sans font-bold z-50"
+>
+  <div class="h-16 w-20 cursor-pointer">
+    <img
+      class="w-full h-full object-cover"
+      src="../../../assets/images/logo.png"
+      alt="logo"
+    />
+  </div>
+
+  <nav class="">
+    <div class="lg:hidden">
+      <a
+        class="hover:text-orange-500 text-blue-dark"
+        (click)="toggleMenuSm()"
+        *ngIf="!isMenuOpen"
+        ><i class="fa-solid fa-bars text-2xl cursor-pointer"></i
+      ></a>
+      <div
+        class="fixed top-0 h-screen w-2/3 flex flex-col bg-blue-dark bg-opacity-75 justify-evenly text-center text-beige-light right-0"
+        *ngIf="isMenuOpen"
+      >
+        <a
+          class="hover:text-orange-500 text-orange-500 top-6 right-8 h-9 fixed hover:bg-blue-dark"
+          (click)="toggleMenuSm()"
+          ><i class="fa-solid fa-xmark text-2xl cursor-pointer"></i
+        ></a>
+        <a
+          routerLink="['']"
+          class="px-4 text-lg py-2 hover:bg-blue-dark hover:text-orange-500 cursor-pointer transition-all duration-300 ease-in-out"
+          (click)="toggleMenuSm()"
+          >Acceuil
+        </a>
+        <a
+          routerLink="['/catalogue']"
+          class="px-4 text-lg py-2 hover:bg-blue-dark hover:text-orange-500 cursor-pointer transition-all duration-300 ease-in-out"
+          (click)="toggleMenuSm()"
+          >Catalogue
+        </a>
+        <a
+          href="#"
+          class="px-4 text-lg py-2 hover:bg-blue-dark hover:text-orange-500 cursor-pointer transition-all duration-300 ease-in-out"
+          (click)="toggleMenuSm()"
+          >Contact
+        </a>
+        <a
+          href="#"
+          class="px-4 text-lg py-2 hover:bg-blue-dark hover:text-orange-500 cursor-pointer transition-all duration-300 ease-in-out"
+          (click)="toggleMenuSm()"
+          >Se Connecter
+        </a>
+      </div>
+    </div>
+    <ul
+      class="hidden text-blue-dark lg:flex lg:justify-evenly lg:flex-row lg:items-center lg:gap-5 text-xl pr-12"
+    >
+      <li>
+        <a
+          [routerLink]="['/']"
+          href="#"
+          class="p-4 hover:bg-blue-dark hover:text-beige-light rounded-2xl cursor-pointer transition-all duration-300 ease-in-out"
+          >Acceuil</a
+        >
+      </li>
+      <li class="relative group">
+        <a
+          [routerLink]="['/catalogue']"
+          class="p-4 hover:bg-blue-dark hover:text-beige-light rounded-2xl cursor-pointer transition-all duration-300 ease-in-out"
+          [ngClass]="isCatalogueOpen ? 'text-orange-500' : ''"
+          (mouseenter)="toggleCatalogue(true)"
+          (mouseleave)="toggleCatalogue(false)"
+        >
+          Catalogue
+        </a>
+
+        <!-- Dropdown Menu -->
+        <ul
+          class="absolute top-full left-0 right-0 mt-2 font-semibold text-lg bg-gray-50 border border-blue-dark shadow-lg rounded-lg opacity-0 transform scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out origin-top"
+          [class.scale-100]="isCatalogueOpen"
+        >
+          <ng-container *ngFor="let category of categories; let last = last">
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-blue-dark hover:bg-beige-light rounded-lg cursor-pointer transition-all duration-300 ease-in-out"
+              >
+                {{ category }}
+              </a>
+            </li>
+            <hr *ngIf="!last" class="border-t border-gray-300 my-1" />
+          </ng-container>
+        </ul>
+      </li>
+
+      <li>
+        <a
+          href="#"
+          class="p-4 hover:bg-blue-dark hover:text-beige-light rounded-2xl cursor-pointer transition-all duration-300 ease-in-out"
+          >Contact</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="bg-blue-dark hover:bg-orange-500 hover:border-orange-500 text-white text-2xl w-14 h-14 flex items-center justify-center rounded-full shadow-md transform transition-transform duration-300 ease-in-out hover:scale-105"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+      </li>
+      <li class="relative group">
+        <a
+          href="#"
+          class="bg-blue-dark hover:bg-orange-500 hover:border-orange-500 text-white text-3xl w-14 h-14 flex items-center justify-center rounded-full shadow-md transform transition-transform duration-300 ease-in-out hover:scale-105"
+          (mouseenter)="toggleUser(true)"
+          (mouseleave)="toggleUser(false)"
+        >
+          <i class="fa-regular fa-user"></i>
+        </a>
+
+        <!-- Dropdown Menu -->
+        <ul
+          class="absolute top-full -left-16 w-48 font-semibold text-lg bg-gray-50 border border-blue-dark shadow-lg rounded-lg opacity-0 transform scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out origin-top"
+          [class.scale-100]="isUserOpen"
+        >
+          <ng-container *ngFor="let action of userActions; let last = last">
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-blue-dark hover:bg-beige-light rounded-lg cursor-pointer transition-all duration-300 ease-in-out"
+              >
+                {{ action }}
+              </a>
+            </li>
+            <!-- Add a border after each action except the last one -->
+            <hr *ngIf="!last" class="border-t border-gray-300 my-1" />
+          </ng-container>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>

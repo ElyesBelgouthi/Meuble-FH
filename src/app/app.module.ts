@@ -1,18 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SlideComponent } from './components/slide/slide.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { FooterComponent } from './components/footer/footer.component';
+import { CatalogueComponent } from './pages/catalogue/catalogue.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    HomeComponent,
+    SlideComponent,
+    TruncatePipe,
+    FooterComponent,
+    CatalogueComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgxPaginationModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

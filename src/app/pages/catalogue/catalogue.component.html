@@ -1,0 +1,23 @@
+<main class="min-h-screen lg:flex lg:flex-row">
+  <aside class="hidden lg:opacity-100 lg:h-full lg:w-60 lg:mt-20">d</aside>
+  <section
+    class="min-h-screen mt-20 bg-gray-50 flex flex-col gap-7 items-center"
+  >
+    <div
+      class="lg:p-10 p-6 flex flex-row flex-wrap gap-7 justify-center"
+      *ngIf="items.length > 0"
+    >
+      <app-card
+        *ngFor="
+          let item of items | paginate : { itemsPerPage: 10, currentPage: p }
+        "
+        [item]="item"
+      ></app-card>
+    </div>
+    <pagination-controls
+      (pageChange)="p = $event"
+      previousLabel="Précédent"
+      nextLabel="Suivant"
+    ></pagination-controls>
+  </section>
+</main>

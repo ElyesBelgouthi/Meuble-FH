@@ -1,0 +1,30 @@
+<div
+  class="lg:flex lg:flex-row max-w-full bg-blue-dark h-full ml-3 relative shadow-"
+>
+  <!-- Description (Hidden on Small Screens) -->
+  <div class="hidden h-full lg:w-1/2 lg:p-20 lg:block">
+    <h1 class="text-4xl font-semibold text-beige mb-4">{{ slide.title }}</h1>
+    <p class="text-gray-50 text-lg leading-7">
+      {{ slide.description }}
+      <a href="#" class="underline text-beige hover:text-blue-300"
+        >Voir plus ...</a
+      >
+    </p>
+  </div>
+
+  <!-- Image  -->
+  <div class="lg:w-1/2 lg:h-full h-1/2">
+    <img src="{{ slide.src }}" class="object-cover w-full h-full" alt="image" />
+  </div>
+
+  <!-- Description (Hidden on Large Screens) -->
+  <div class="lg:hidden p-4 absolute bg-blue-dark">
+    <h1 class="text-lg font-semibold text-beige mb-4">{{ slide.title }}</h1>
+    <p class="text-gray-50 text-sm leading-7">
+      {{ slide.description | truncate }}
+      <a href="#" class="underline text-beige hover:text-blue-300"
+        >Voir plus ...</a
+      >
+    </p>
+  </div>
+</div>
