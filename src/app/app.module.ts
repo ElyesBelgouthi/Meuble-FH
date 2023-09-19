@@ -11,6 +11,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 import { CardComponent } from './components/card/card.component';
+import { DetailsComponent } from './pages/details/details.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CardComponent } from './components/card/card.component';
     FooterComponent,
     CatalogueComponent,
     CardComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,

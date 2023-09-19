@@ -12,7 +12,7 @@ export class HeaderComponent {
 
   userActions: string[] = ['Se connecter', 'Créer un compte'];
 
-  categories: string[] = ['Chaise', 'Étagère', 'Bureau'];
+  categories: string[] = ['Chaise', 'Étagère', 'Bureau', 'Comptoir'];
 
   toggleCatalogue(state: boolean) {
     this.isCatalogueOpen = state;

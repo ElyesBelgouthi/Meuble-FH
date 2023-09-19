@@ -1,0 +1,71 @@
+<div class="container mx-auto mt-24 p-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+  <div class="lg:col-span-1 relative h-96 overflow-hidden rounded-lg shadow-xl">
+    <img
+      src="../../../assets/images/home-img-1.jpg"
+      alt="Product Image"
+      class="w-full h-full object-cover transform scale-100 transition-transform duration-300 ease-in-out hover:scale-110"
+      id="mainImage"
+    />
+  </div>
+  <div class="lg:col-span-1">
+    <h1 class="text-4xl font-semibold">Product Name</h1>
+    <p class="text-gray-600 text-lg mt-4">Product Description</p>
+    <div class="text-3xl text-orange-500 mt-4">$99.99</div>
+    <button
+      class="bg-blue-500 text-white rounded-lg py-3 px-6 mt-6 hover:bg-blue-600 transition-colors duration-300 ease-in-out"
+    >
+      Add to Cart
+    </button>
+    <div class="mt-8">
+      <h2 class="text-2xl font-semibold">Product Details</h2>
+      <ul class="list-disc pl-6 mt-4 text-gray-700">
+        <li>Detail 1</li>
+        <li>Detail 2</li>
+        <li>Detail 3</li>
+      </ul>
+    </div>
+    <div class="mt-8 grid grid-cols-4 gap-4">
+      <!-- Small product images -->
+      <div
+        class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
+        (click)="changeImage('product-image-1.jpg')"
+      >
+        <img
+          src="../../../assets/images/product-image-1.jpg"
+          alt="Product Image 1"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div
+        class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
+        (click)="changeImage('product-image-2.jpg')"
+      >
+        <img
+          src="../../../assets/images/product-image-2.jpg"
+          alt="Product Image 2"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div
+        class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
+        (click)="changeImage('product-image-3.jpg')"
+      >
+        <img
+          src="../../../assets/images/product-image-3.jpg"
+          alt="Product Image 3"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div
+        class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
+        (click)="changeImage('product-image-4.jpg')"
+      >
+        <img
+          src="../../../assets/images/product-image-4.jpg"
+          alt="Product Image 4"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</div>
