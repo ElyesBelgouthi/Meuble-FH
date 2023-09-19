@@ -1,8 +1,121 @@
-<main class="min-h-screen lg:flex lg:flex-row">
-  <aside class="hidden lg:opacity-100 lg:h-full lg:w-60 lg:mt-20">d</aside>
-  <section
-    class="min-h-screen mt-20 bg-gray-50 flex flex-col gap-7 items-center"
+<main class="min-h-screen bg-gray-50 lg:p-4 lg:relative">
+  <aside
+    class="lg:max-w-[280px] lg:w-[280px] lg:mt-24 mt-20 lg:ml-6 bg-white p-4 rounded-lg shadow-2xl lg:fixed z-50"
   >
+    <div class="w-full">
+      <button
+        (click)="toggleFilter()"
+        class="flex justify-between items-center w-full px-4 py-2 rounded-full text-gray-800 hover:bg-gray-100 focus:outline-none"
+        [ngClass]="{ 'mb-4': filterExpanded }"
+      >
+        <h1 class="text-2xl font-bold">Filtres</h1>
+        <span
+          [ngClass]="{ 'rotate-90': filterExpanded }"
+          class="transition-transform transform"
+        >
+          ➔
+        </span>
+      </button>
+
+      <!-- Categories -->
+      <div class="mb-8" *ngIf="filterExpanded">
+        <h2 class="text-lg font-semibold mb-4">Catégories</h2>
+        <ul>
+          <li
+            *ngFor="let category of categories"
+            class="mb-3 first:mt-0 last:mb-0"
+          >
+            <button
+              (click)="toggleAccordion(category)"
+              class="flex justify-between items-center w-full py-2 px-4 rounded-full text-gray-800 hover:bg-gray-100 focus:outline-none"
+            >
+              <span>{{ category.name }}</span>
+              <span
+                [ngClass]="{ 'rotate-90': category.expanded }"
+                class="transition-transform transform"
+              >
+                ➔
+              </span>
+            </button>
+            <div *ngIf="category.expanded" class="ml-4">
+              <ul>
+                <li
+                  *ngFor="let subcategory of category.subcategories"
+                  class="mb-2 first:mt-0 last:mb-0"
+                >
+                  <button
+                    (click)="toggleSubcategory(subcategory)"
+                    class="flex items-center w-full py-2 px-4 rounded-full text-gray-800 hover:bg-gray-100 focus:outline-none"
+                  >
+                    <i
+                      *ngIf="subcategory.selected"
+                      class="fa-solid fa-square-check"
+                    ></i>
+                    <i
+                      *ngIf="!subcategory.selected"
+                      class="fa-regular fa-square"
+                    ></i
+                    >&nbsp;
+                    {{ subcategory.name }}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex justify-between">
+      <a
+        *ngIf="filterExpanded"
+        class="bg-blue-700 hover:bg-blue-dark text-white py-3 px-5 rounded-full transition-colors duration-300 cursor-pointer text-lg"
+        ><i class="fa-solid fa-filter"></i>&nbsp;Filtrer
+      </a>
+      <a
+        *ngIf="filterExpanded"
+        class="bg-orange-500 hover:bg-orange-600 text-white py-3 px-5 rounded-full transition-colors duration-300 cursor-pointer text-"
+        >réinitialiser
+      </a>
+    </div>
+  </aside>
+
+  <section
+    class="min-h-screen lg:mt-20 lg:w-780px flex flex-col gap-7 items-center"
+  >
+    <div class="relative w-md md:w-1/3 xl:w-1/2 mx-auto">
+      <div
+        class="relative rounded-full bg-white border-2 border-gray-300 overflow-hidden shadow-lg mt-6"
+      >
+        <input
+          type="text"
+          placeholder="Rechercher"
+          class="w-full py-3 px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-dark text-gray-800 text-lg font-semibold"
+        />
+        <button
+          class="absolute right-0 top-0 mt-3 mr-3 text-gray-600 hover:text-blue-500 transition duration-300"
+        >
+          <i class="fa-solid fa-search"></i>
+        </button>
+      </div>
+    </div>
+    <div class="relative inline-block max-w-sm">
+      <select
+        class="appearance-none bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-full shadow-lg leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-lg cursor-pointer"
+      >
+        <option value="" disabled selected>Tri</option>
+        <option value="priceUp">Prix Croissant</option>
+        <option value="priceDown">Prix Décroissant</option>
+        <option value="alphabetic">A &RightArrow; Z</option>
+      </select>
+      <div
+        class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4"
+      >
+        <i class="fa-solid fa-sort"></i>
+      </div>
+    </div>
+
+    <h1>{{ items.length }} Articles</h1>
+
     <div
       class="lg:p-10 p-6 flex flex-row flex-wrap gap-7 justify-center"
       *ngIf="items.length > 0"

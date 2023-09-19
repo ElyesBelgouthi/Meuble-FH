@@ -17,7 +17,9 @@
       Dimensions: {{ item.height }}*{{ item.width }} cm²
     </h2>
     <div class="flex justify-between items-center">
-      <h3 class="text-lg font-semibold text-orange-500">{{ item.price }} DT</h3>
+      <h3 class="text-lg font-semibold text-orange-500">
+        {{ item.price | currency : "TND" }}
+      </h3>
       <a
         class="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-full transition-colors duration-300"
         ><i class="fa-solid fa-cart-plus"></i
