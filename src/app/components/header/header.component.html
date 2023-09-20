@@ -27,13 +27,13 @@
           ><i class="fa-solid fa-xmark text-2xl cursor-pointer"></i
         ></a>
         <a
-          routerLink="['']"
+          [routerLink]="['']"
           class="px-4 text-lg py-2 hover:bg-blue-dark hover:text-orange-500 cursor-pointer transition-all duration-300 ease-in-out"
           (click)="toggleMenuSm()"
           >Acceuil
         </a>
         <a
-          routerLink="['/catalogue']"
+          [routerLink]="['/catalogue']"
           class="px-4 text-lg py-2 hover:bg-blue-dark hover:text-orange-500 cursor-pointer transition-all duration-300 ease-in-out"
           (click)="toggleMenuSm()"
           >Catalogue
@@ -96,7 +96,7 @@
 
       <li>
         <a
-          href="#"
+          href="#contact"
           class="p-4 hover:bg-blue-dark hover:text-beige-light rounded-2xl cursor-pointer transition-all duration-300 ease-in-out"
           >Contact</a
         >

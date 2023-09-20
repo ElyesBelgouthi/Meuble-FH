@@ -122,9 +122,11 @@
     >
       <app-card
         *ngFor="
-          let item of items | paginate : { itemsPerPage: 12, currentPage: p }
+          let item of items | paginate : { itemsPerPage: 12, currentPage: p };
+          let i = index
         "
         [item]="item"
+        [routerLink]="['/details', i]"
       ></app-card>
     </div>
     <pagination-controls

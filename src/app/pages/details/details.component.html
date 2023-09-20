@@ -1,71 +1,112 @@
-<div class="container mx-auto mt-24 p-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
-  <div class="lg:col-span-1 relative h-96 overflow-hidden rounded-lg shadow-xl">
-    <img
-      src="../../../assets/images/home-img-1.jpg"
-      alt="Product Image"
-      class="w-full h-full object-cover transform scale-100 transition-transform duration-300 ease-in-out hover:scale-110"
-      id="mainImage"
-    />
-  </div>
-  <div class="lg:col-span-1">
-    <h1 class="text-4xl font-semibold">Product Name</h1>
-    <p class="text-gray-600 text-lg mt-4">Product Description</p>
-    <div class="text-3xl text-orange-500 mt-4">$99.99</div>
-    <button
-      class="bg-blue-500 text-white rounded-lg py-3 px-6 mt-6 hover:bg-blue-600 transition-colors duration-300 ease-in-out"
+<div
+  class="container mx-auto mt-24 p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 w-full"
+>
+  <div class="grid-cols-1 lg:h-full lg:w-full">
+    <div
+      class="lg:col-span-1 relative lg:h-[580px] lg:w-full aspect-w-1 aspect-h-1 overflow-hidden rounded-lg shadow-xl"
     >
-      Add to Cart
-    </button>
-    <div class="mt-8">
-      <h2 class="text-2xl font-semibold">Product Details</h2>
-      <ul class="list-disc pl-6 mt-4 text-gray-700">
-        <li>Detail 1</li>
-        <li>Detail 2</li>
-        <li>Detail 3</li>
-      </ul>
+      <img
+        src="../../../assets/images/{{ currentImage }}"
+        alt="Product Image"
+        class="w-full h-full object-contain transform scale-100 transition-transform duration-300 ease-in-out hover:scale-110 cursor-zoom-in"
+        id="mainImage"
+      />
     </div>
     <div class="mt-8 grid grid-cols-4 gap-4">
       <!-- Small product images -->
       <div
         class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
-        (click)="changeImage('product-image-1.jpg')"
+        (click)="changeImage('home-img-1.jpg')"
       >
         <img
-          src="../../../assets/images/product-image-1.jpg"
+          src="../../../assets/images/home-img-1.jpg"
           alt="Product Image 1"
           class="w-full h-full object-cover"
         />
       </div>
       <div
         class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
-        (click)="changeImage('product-image-2.jpg')"
+        (click)="changeImage('home-img-2.jpg')"
       >
         <img
-          src="../../../assets/images/product-image-2.jpg"
+          src="../../../assets/images/home-img-2.jpg"
           alt="Product Image 2"
           class="w-full h-full object-cover"
         />
       </div>
       <div
         class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
-        (click)="changeImage('product-image-3.jpg')"
+        (click)="changeImage('home-img-3.jpg')"
       >
         <img
-          src="../../../assets/images/product-image-3.jpg"
+          src="../../../assets/images/home-img-3.jpg"
           alt="Product Image 3"
           class="w-full h-full object-cover"
         />
       </div>
       <div
         class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
-        (click)="changeImage('product-image-4.jpg')"
+        (click)="changeImage('home-img-4.jpg')"
       >
         <img
-          src="../../../assets/images/product-image-4.jpg"
+          src="../../../assets/images/home-img-4.jpg"
           alt="Product Image 4"
           class="w-full h-full object-cover"
         />
       </div>
+    </div>
+  </div>
+
+  <div class="lg:col-span-1 p-6 rounded-lg shadow-xl border border-gray-300">
+    <h1 class="text-4xl font-semibold text-gray-800">Product Name</h1>
+    <p class="text-gray-600 text-lg mt-2">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque pariatur
+      veniam vero quasi est cupiditate mollitia, odit commodi eligendi animi
+      ratione. In minima debitis exercitationem, dicta quod delectus voluptate
+      quas!
+    </p>
+    <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Dimensions</h2>
+    <p class="text-gray-600 text-lg mt-2">24*24 cm</p>
+
+    <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Couleurs</h2>
+    <div class="flex gap-4 flex-wrap">
+      <button
+        class="w-20 h-20 rounded-lg ring-1 ring-black"
+        *ngFor="let color of colors"
+        [ngClass]="{ 'border-2 border-blue-500': selectedColor === color }"
+        (click)="selectColor(color)"
+        [title]="color"
+      >
+        <img
+          [src]="'../../../assets/images/' + color"
+          [alt]="color"
+          class="w-full h-full rounded-lg"
+        />
+      </button>
+    </div>
+
+    <div class="flex items-center mt-4">
+      <input
+        type="number"
+        class="w-20 lg:w-24 h-16 border border-gray-400 rounded-md px-2 text-center text-gray-800 text-lg font-bold"
+        min="1"
+        value="1"
+      />
+
+      <button
+        class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 px-6 rounded-full w-96 shadow-md transition-transform duration-300 ease-in-out transform hover:scale-105 focus:outline-none ml-5"
+      >
+        <i class="fa-solid fa-cart-plus"></i>&nbsp; Ajouter au panier
+      </button>
+    </div>
+
+    <div class="mt-6">
+      <h2 class="text-2xl font-semibold text-gray-800">Product Details</h2>
+      <ul class="list-disc pl-6 mt-2 text-gray-700">
+        <li>Detail 1</li>
+        <li>Detail 2</li>
+        <li>Detail 3</li>
+      </ul>
     </div>
   </div>
 </div>

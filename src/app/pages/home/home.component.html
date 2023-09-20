@@ -14,8 +14,8 @@
       </h1>
       <p class="text-lg lg:text-xl lg:mb-8 mb-4">Transformer le Bois en Art</p>
       <a
-        href="#"
-        class="bg-gradient-to-r from-blue-500 to-blue-dark hover:from-blue-dark hover:to-blue-500 hover:translate-x-2 hover:text-white lg:text-xl text-md font-semibold lg:py-4 lg:px-6 py-2 px-3 rounded-full shadow-md mt-6 transition-transform duration-1000 ease-linear cursor-pointer font-sans"
+        [routerLink]="['/catalogue']"
+        class="bg-gradient-to-r from-blue-500 to-blue-dark hover:from-blue-dark hover:to-blue-500 hover:translate-x-2 hover:text-white lg:text-xl text-md font-semibold lg:py-4 lg:px-6 py-2 px-3 rounded-full shadow-md mt-6 transition-transform duration-1000 ease-linear cursor-pointer font-sans hover:scale-105"
       >
         Voir plus
       </a>
@@ -127,6 +127,8 @@
   >
     <div
       class="relative group bg-beige lg:h-60 lg:w-60 lg:p-10 h-40 w-40 p-6 rounded-full cursor-pointer"
+      [routerLink]="['/catalogue']"
+      [queryParams]="{ categories: 'Bureau' }"
     >
       <svg
         version="1.1"
@@ -185,6 +187,8 @@
     </div>
     <div
       class="relative group bg-beige lg:h-60 lg:w-60 lg:p-10 h-40 w-40 p-6 rounded-full cursor-pointer"
+      [routerLink]="['/catalogue']"
+      [queryParams]="{ categories: 'Chaise' }"
     >
       <svg
         version="1.1"
@@ -244,6 +248,8 @@
     </div>
     <div
       class="relative group bg-beige lg:h-60 lg:w-60 lg:p-10 h-40 w-40 p-6 rounded-full cursor-pointer"
+      [routerLink]="['/catalogue']"
+      [queryParams]="{ categories: 'Étagère' }"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -275,6 +281,8 @@
     </div>
     <div
       class="relative group bg-beige lg:h-60 lg:w-60 lg:p-10 h-40 w-40 p-6 rounded-full cursor-pointer"
+      [routerLink]="['/catalogue']"
+      [queryParams]="{ categories: 'Comptoir' }"
     >
       <svg
         viewBox="0 0 512 512"
