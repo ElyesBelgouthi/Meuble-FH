@@ -1,1 +1,120 @@
-<p>cart works!</p>
+<main class="min-h-screen w-full mt-20 bg-gray-100">
+  <div class="container mx-auto mt-12 p-4">
+    <h1 class="text-4xl lg:text-[60px] font-bold mb-8 text-blue-dark">
+      Votre Panier
+    </h1>
+
+    <!-- Cart Empty Message -->
+    <div *ngIf="isCartEmpty" class="text-center text-gray-600 mb-8">
+      <p>Your cart is empty.</p>
+      <a routerLink="/" class="text-blue-500 hover:underline"
+        >Browse Products</a
+      >
+    </div>
+
+    <!-- Cart Items -->
+    <div
+      class="mt-8 flex flex-col-reverse lg:flex-row justify-between items-center"
+    >
+      <div
+        class="flex lg:flex-row flex-col lg:justify-between justify-center items-center w-full gap-4 lg:gap-0"
+      >
+        <div
+          class="bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 text-white px-8 py-4 rounded-lg shadow-lg flex items-center mb-5"
+        >
+          <i class="fa-solid fa-coins text-3xl"></i>&nbsp;
+          <p class="text-xl font-semibold">&nbsp;&nbsp;Total:&nbsp;</p>
+          <p class="text-2xl font-bold">{{ 1000 | currency }}</p>
+        </div>
+
+        <!-- Command Button -->
+        <button
+          class="bg-gradient-to-r from-green-700 via-emerald-500 to-green-700 text-white text-3xl font-bold px-8 py-4 rounded-lg shadow-lg flex items-center space-x-4 transition-transform transform hover:scale-105 mb-5"
+        >
+          <i class="fa-solid fa-truck-fast"></i>&nbsp;Commander
+        </button>
+      </div>
+    </div>
+
+    <div
+      *ngFor="
+        let item of cartItems | paginate : { itemsPerPage: 8, currentPage: p };
+        let i = index
+      "
+      class="bg-beige-light rounded-lg p-4 shadow-lg mb-4 transition-transform transform lg:hover:scale-105 cursor-pointer"
+    >
+      <div class="flex flex-col lg:flex-row justify-between items-center">
+        <!-- Product Image -->
+        <div
+          class="w-32 h-32 lg:w-24 lg:h-24 overflow-hidden rounded-lg shadow-md"
+        >
+          <img
+            src="../../../assets/images/home-img-1.jpg"
+            alt="Product Image"
+            class="object-cover w-full h-full"
+          />
+        </div>
+
+        <!-- Product Details -->
+        <div class="mt-4 lg:mt-0 lg:ml-4 flex-1">
+          <h2
+            class="text-xl font-semibold text-gray-800 hover:underline hover:text-blue-600"
+            [routerLink]="['/details', i]"
+          >
+            {{ item.title }}
+          </h2>
+          <p class="text-gray-600">{{ item.description }}</p>
+
+          <!-- Reference and Color Fields -->
+          <div class="mt-2 text-sm text-gray-500">
+            <p>
+              <span class="font-semibold">Reference:</span> {{ item.reference }}
+            </p>
+            <p><span class="font-semibold">Color:</span> {{ item.color }}</p>
+          </div>
+        </div>
+
+        <!-- Product Quantity, Price, and Remove Button -->
+        <div
+          class="mt-4 lg:mt-0 lg:ml-4 flex items-center flex-col lg:flex-row"
+        >
+          <!-- Quantity Field -->
+          <div class="mb-2 lg:mb-0 lg:mr-4">
+            <label for="quantity{{ i }}" class="sr-only">Quantity</label>
+            <input
+              type="number"
+              id="quantity{{ i }}"
+              name="quantity{{ i }}"
+              min="1"
+              class="w-16 p-2 border border-gray-300 rounded"
+            />
+          </div>
+
+          <!-- Product Price -->
+          <p class="text-lg font-semibold text-gray-800">
+            {{ item.price | currency }}
+          </p>
+
+          <!-- Remove Button -->
+          <button
+            class="mt-2 lg:mt-0 ml-0 lg:ml-4 text-red-500 hover:text-red-600 hover:bg-red-100 rounded-full px-4 py-2 transition-colors duration-300"
+          >
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex flex-col w-full items-center">
+      <pagination-controls
+        (pageChange)="p = $event"
+        previousLabel="Previous"
+        nextLabel="Next"
+        class="mt-4"
+      ></pagination-controls>
+    </div>
+
+    <!-- Total Price -->
+  </div>
+</main>
