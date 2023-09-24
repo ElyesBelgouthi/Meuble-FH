@@ -13,6 +13,9 @@ import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 import { CardComponent } from './components/card/card.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { AdminSpaceComponent } from './pages/admin-space/admin-space.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,12 +29,15 @@ import { CartComponent } from './pages/cart/cart.component';
     CardComponent,
     DetailsComponent,
     CartComponent,
+    AdminSpaceComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
