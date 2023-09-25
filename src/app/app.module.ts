@@ -17,6 +17,10 @@ import { AdminSpaceComponent } from './pages/admin-space/admin-space.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './pages/admin-space/dashboard/dashboard.component';
+import { ItemsComponent } from './pages/admin-space/items/items.component';
+import { ColorsComponent } from './pages/admin-space/colors/colors.component';
+import { OrdersComponent } from './pages/admin-space/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { HttpClientModule } from '@angular/common/http';
     CartComponent,
     AdminSpaceComponent,
     LoginComponent,
+    DashboardComponent,
+    ItemsComponent,
+    ColorsComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
