@@ -5,7 +5,11 @@
     <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-6">
       Connexion
     </h2>
-    <form class="space-y-6 text-lg">
+    <form
+      [formGroup]="loginForm"
+      (submit)="onSubmit()"
+      class="space-y-6 text-lg"
+    >
       <div>
         <label for="username" class="text-gray-600 font-bold"
           >Nom d'utilisateur</label
@@ -14,8 +18,10 @@
           type="text"
           id="username"
           name="username"
+          formControlName="username"
           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-teal-400 text-gray-800 font-semibold"
           placeholder="Entrez votre nom d'utilisateur"
+          (input)="onChanged()"
         />
       </div>
       <div>
@@ -26,9 +32,14 @@
           type="password"
           id="password"
           name="password"
+          formControlName="password"
           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-teal-400 text-gray-800 font-semibold"
           placeholder="Entrez votre mot de passe"
+          (input)="onChanged()"
         />
+        <span class="form-helper error" *ngIf="deniedAccess"
+          >Veuillez entrer des identifiants valides</span
+        >
       </div>
       <div>
         <button
