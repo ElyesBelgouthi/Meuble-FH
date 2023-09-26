@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Color } from 'src/app/models/color.model';
 import { ColorService } from 'src/app/services/color.service';
+import { ImageService } from 'src/app/services/image.service';
 import { fileValidator } from 'src/app/shared/file.validator';
 
 @Component({
@@ -15,22 +16,46 @@ export class ColorsEditComponent implements OnInit {
   editMode!: boolean;
   id!: number;
   color!: Color;
-  selectedFileName: string = 'choose a picture';
+  selectedFileName: string = 'Choisir une photo';
   imageSrc!: any;
   previewImage!: any;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private colorService: ColorService
+    private colorService: ColorService,
+    private imageService: ImageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.editMode = params['id'] !== undefined;
+    });
+    if (this.editMode) {
+      this.colorService.getColorById(this.id).subscribe((color: Color) => {
+        this.color = color;
+        this.imageService.getImage(color.path).subscribe(
+          (imageData) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              this.imageSrc = e.target?.result;
+            };
+            reader.readAsDataURL(imageData);
+          },
+          (error) => {}
+        );
+        this.initForm();
+      });
+    } else {
+      this.initForm();
+    }
+  }
 
   private initForm() {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      reference: new FormControl('', [Validators.required]),
+      reference: new FormControl(''),
       img: new FormControl(null, [fileValidator]),
     });
 
@@ -56,9 +81,9 @@ export class ColorsEditComponent implements OnInit {
       });
       this.previewImage = URL.createObjectURL(selectedFile);
     } else {
-      this.selectedFileName = 'choose a picture';
+      this.selectedFileName = 'Choisir une photo';
       this.form.patchValue({
-        profilePicture: null,
+        img: null,
       });
     }
   }
@@ -67,14 +92,13 @@ export class ColorsEditComponent implements OnInit {
     if (this.form.valid) {
       const formData = new FormData();
       formData.append('name', this.form.value.name);
-      formData.append('reference', this.form.value.lastName);
       if (this.form.value.img instanceof File) {
-        formData.append('profilePicture', this.form.value.img);
+        formData.append('img', this.form.value.img);
       }
       if (this.editMode) {
-        this.colorService.updateColor(this.id, formData);
+        this.colorService.updateColor(this.id, formData).subscribe();
       } else {
-        this.colorService.addColor(formData);
+        this.colorService.addColor(formData).subscribe();
       }
       this.router.navigate(['admin', 'colors']);
     }

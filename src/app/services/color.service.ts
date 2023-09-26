@@ -15,11 +15,11 @@ export class ColorService {
   }
 
   getColorById(id: number): Observable<Color> {
-    return this.http.get<Color>(this.BaseURL + '/color' + id);
+    return this.http.get<Color>(this.BaseURL + '/color/' + id);
   }
 
   updateColor(id: number, formData: any): Observable<Color> {
-    return this.http.patch<Color>(this.BaseURL + '/color' + id, formData);
+    return this.http.patch<Color>(this.BaseURL + '/color/' + id, formData);
   }
 
   addColor(formData: any): Observable<Color> {
@@ -27,6 +27,6 @@ export class ColorService {
   }
 
   deleteColor(id: number): void {
-    this.http.delete(this.BaseURL + '/color' + id).subscribe();
+    this.http.delete(this.BaseURL + '/color/' + id).subscribe();
   }
 }

@@ -1,59 +1,82 @@
-<div class="bg-gray-200 min-h-screen py-8">
+<div class="bg-gray-200 min-h-screen py-8 lg:px-12 px-4 mt-20">
   <div class="container mx-auto">
-    <div class="flex items-center justify-center mb-8">
-      <h1 class="text-4xl font-extrabold text-gray-900">Couleur</h1>
+    <div class="flex flex-col items-center justify-center mb-8">
+      <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Couleur</h1>
+      <div class="w-72 h-72 rounded-lg ring-1 ring-black" *ngIf="previewImage">
+        <img
+          [src]="previewImage"
+          [alt]="color"
+          class="w-full h-full rounded-lg"
+        />
+      </div>
+      <div
+        class="w-72 h-72 rounded-lg ring-1 ring-black"
+        *ngIf="imageSrc && !previewImage"
+      >
+        <img [src]="imageSrc" [alt]="color" class="w-full h-full rounded-lg" />
+      </div>
     </div>
 
-    <div class="bg-white rounded-lg shadow-md p-4">
-      <form class="form" [formGroup]="form" (Submit)="onSubmit()">
+    <div class="bg-white rounded-lg shadow-md p-4" *ngIf="form">
+      <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="mb-4">
           <label for="name" class="block text-gray-700 font-bold mb-2"
             >Nom de Couleur</label
           >
-          <input type="text" id="name" formControlName="name" />
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+          />
           <span
             class="text-red-500 text-xs italic"
             *ngIf="!form.get('name')?.valid && form.get('name')?.touched"
+            >Veuillez entrer un nom valide</span
           >
-            Veuillez entrer un nom valide
-          </span>
         </div>
-        <div class="mb-4">
+        <div class="mb-4" *ngIf="editMode">
           <label for="reference" class="block text-gray-700 font-bold mb-2"
-            >Reference</label
+            >Reférence</label
           >
-          <input type="text" id="reference" formControlName="reference" />
-          <span
-            class="text-red-500 text-xs italic"
-            *ngIf="
-              !form.get('reference')?.valid && form.get('reference')?.touched
-            "
-          >
-            Veuillez entrer une reférence valide
-          </span>
+          <input
+            type="text"
+            id="reference"
+            formControlName="reference"
+            class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+            [readonly]="true"
+          />
         </div>
 
         <div class="mb-4">
           <label for="img" class="block text-gray-700 font-bold mb-2"
             >Image</label
           >
-          <input type="file" id="img" (change)="onFileChange($event)" />
+          <input
+            type="file"
+            id="img"
+            (change)="onFileChange($event)"
+            class="border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+          />
           <span
             class="text-red-500 text-xs italic"
             *ngIf="form.get('img')?.hasError('invalidFileType')"
+            >Type invalide.</span
           >
-            Type invalid.
-          </span>
           <span
             class="text-red-500 text-xs italic"
             *ngIf="form.get('img')?.hasError('sizeExceeded')"
+            >Taille de fichier trop grande. Maximum taille est 10 MB.</span
           >
-            Taille de fichier grande. Maximum taille est 10 MB.
-          </span>
         </div>
 
         <div class="flex justify-center">
-          <button type="submit" class="btn-start btn-save">Save</button>
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+          >
+            Sauvegarder
+          </button>
         </div>
       </form>
     </div>

@@ -50,7 +50,9 @@
       <div
         class="bill-card p-4 mt-4 cursor-pointer hover:bg-gray-100 transform hover:scale-105 transition duration-300 shadow-md rounded-lg bg-yellow-50"
         *ngFor="
-          let color of colors | paginate : { itemsPerPage: 6, currentPage: p };
+          let color of colors
+            | colorSearch : searchText
+            | paginate : { itemsPerPage: 6, currentPage: p };
           let i = index
         "
         [routerLink]="[color.id, 'edit']"

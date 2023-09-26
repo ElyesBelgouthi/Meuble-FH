@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SlideComponent } from './components/slide/slide.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { ColorSearchPipe } from './pipes/color-search.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 import { CardComponent } from './components/card/card.component';
@@ -35,6 +36,7 @@ import { ItemsEditComponent } from './pages/admin-space/items/items-edit/items-e
     HomeComponent,
     SlideComponent,
     TruncatePipe,
+    ColorSearchPipe,
     FooterComponent,
     CatalogueComponent,
     CardComponent,
