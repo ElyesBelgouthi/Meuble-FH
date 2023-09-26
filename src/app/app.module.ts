@@ -21,6 +21,12 @@ import { DashboardComponent } from './pages/admin-space/dashboard/dashboard.comp
 import { ItemsComponent } from './pages/admin-space/items/items.component';
 import { ColorsComponent } from './pages/admin-space/colors/colors.component';
 import { OrdersComponent } from './pages/admin-space/orders/orders.component';
+import { OrdersListComponent } from './pages/admin-space/orders/orders-list/orders-list.component';
+import { OrdersEditComponent } from './pages/admin-space/orders/orders-edit/orders-edit.component';
+import { ColorsEditComponent } from './pages/admin-space/colors/colors-edit/colors-edit.component';
+import { ColorsListComponent } from './pages/admin-space/colors/colors-list/colors-list.component';
+import { ItemsListComponent } from './pages/admin-space/items/items-list/items-list.component';
+import { ItemsEditComponent } from './pages/admin-space/items/items-edit/items-edit.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +46,12 @@ import { OrdersComponent } from './pages/admin-space/orders/orders.component';
     ItemsComponent,
     ColorsComponent,
     OrdersComponent,
+    OrdersListComponent,
+    OrdersEditComponent,
+    ColorsEditComponent,
+    ColorsListComponent,
+    ItemsListComponent,
+    ItemsEditComponent,
   ],
   imports: [
     BrowserModule,

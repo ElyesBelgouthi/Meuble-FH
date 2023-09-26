@@ -1,0 +1,73 @@
+<div
+  class="bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 text-white min-h-screen py-8 lg:px-16 px-4 mt-20"
+>
+  <div class="mx-auto">
+    <div class="flex items-center justify-between mb-8">
+      <h1 class="text-4xl font-extrabold text-gray-100">Couleurs</h1>
+      <button
+        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full shadow-md"
+        [routerLink]="['new']"
+      >
+        Ajouter
+      </button>
+    </div>
+
+    <div
+      class="mb-4 flex flex-row items-center space-x-4 w-full justify-center"
+    >
+      <input
+        type="text"
+        placeholder="Search..."
+        class="rounded-full px-4 py-2 w-1/2 text-black font-s bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md"
+        (input)="onSearch($event)"
+      />
+      <button
+        class="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-2 shadow-md"
+      >
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <div
+      class="mb-4 flex flex-row items-center space-x-4 w-full justify-center text-lg text-white p-4 rounded-lg"
+    >
+      <pagination-controls
+        (pageChange)="p = $event"
+        previousLabel="Précédent"
+        nextLabel="Suivant"
+        class="!text-white"
+        previousIconClass="!text-white"
+        nextIconClass="!text-white"
+      ></pagination-controls>
+    </div>
+
+    <div class="bg-gray-200 rounded-lg shadow-md p-4">
+      <div class="flex justify-between p-2 rounded-t-lg">
+        <h3 class="text-lg font-semibold text-gray-800">Nom</h3>
+        <h3 class="text-lg font-semibold text-gray-800">Reférence</h3>
+        <h3 class="text-lg font-semibold text-gray-800">&nbsp;</h3>
+      </div>
+
+      <div
+        class="bill-card p-4 mt-4 cursor-pointer hover:bg-gray-100 transform hover:scale-105 transition duration-300 shadow-md rounded-lg bg-yellow-50"
+        *ngFor="
+          let color of colors | paginate : { itemsPerPage: 6, currentPage: p };
+          let i = index
+        "
+        [routerLink]="[color.id, 'edit']"
+      >
+        <div class="flex justify-between items-center">
+          <h3 class="text-lg font-semibold text-gray-800">
+            {{ color.name | truncate }}
+          </h3>
+          <p class="text-lg text-gray-600">{{ color.reference }}</p>
+          <button
+            class="bg-red-500 hover:bg-red-600 text-white font-semibold rounded-full p-2 shadow-md"
+            (click)="onDelete(color.id, i + 6 * (p - 1), $event)"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

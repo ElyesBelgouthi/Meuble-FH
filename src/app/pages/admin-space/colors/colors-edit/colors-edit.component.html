@@ -1,0 +1,61 @@
+<div class="bg-gray-200 min-h-screen py-8">
+  <div class="container mx-auto">
+    <div class="flex items-center justify-center mb-8">
+      <h1 class="text-4xl font-extrabold text-gray-900">Couleur</h1>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-4">
+      <form class="form" [formGroup]="form" (Submit)="onSubmit()">
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700 font-bold mb-2"
+            >Nom de Couleur</label
+          >
+          <input type="text" id="name" formControlName="name" />
+          <span
+            class="text-red-500 text-xs italic"
+            *ngIf="!form.get('name')?.valid && form.get('name')?.touched"
+          >
+            Veuillez entrer un nom valide
+          </span>
+        </div>
+        <div class="mb-4">
+          <label for="reference" class="block text-gray-700 font-bold mb-2"
+            >Reference</label
+          >
+          <input type="text" id="reference" formControlName="reference" />
+          <span
+            class="text-red-500 text-xs italic"
+            *ngIf="
+              !form.get('reference')?.valid && form.get('reference')?.touched
+            "
+          >
+            Veuillez entrer une reférence valide
+          </span>
+        </div>
+
+        <div class="mb-4">
+          <label for="img" class="block text-gray-700 font-bold mb-2"
+            >Image</label
+          >
+          <input type="file" id="img" (change)="onFileChange($event)" />
+          <span
+            class="text-red-500 text-xs italic"
+            *ngIf="form.get('img')?.hasError('invalidFileType')"
+          >
+            Type invalid.
+          </span>
+          <span
+            class="text-red-500 text-xs italic"
+            *ngIf="form.get('img')?.hasError('sizeExceeded')"
+          >
+            Taille de fichier grande. Maximum taille est 10 MB.
+          </span>
+        </div>
+
+        <div class="flex justify-center">
+          <button type="submit" class="btn-start btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
