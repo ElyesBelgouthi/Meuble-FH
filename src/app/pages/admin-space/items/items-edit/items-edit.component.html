@@ -1,1 +1,206 @@
-<p>items-edit works!</p>
+<div class="bg-gray-200 min-h-screen py-8 lg:px-12 px-4 mt-20">
+  <div class="container mx-auto">
+    <div class="flex flex-col items-center justify-center mb-8">
+      <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Article</h1>
+      <div
+        class="w-72 h-72 rounded-lg ring-1 ring-black"
+        *ngFor="let previewImage of previewImages"
+      >
+        <img
+          [src]="previewImage"
+          alt="image"
+          class="w-full h-full rounded-lg"
+        />
+      </div>
+      <div
+        class="w-72 h-72 rounded-lg ring-1 ring-black"
+        *ngIf="imageSrc && !previewImages"
+      >
+        <img [src]="imageSrc" alt="image" class="w-full h-full rounded-lg" />
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-4" *ngIf="form">
+      <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label for="title" class="block text-gray-700 font-bold mb-2"
+            >Nom de l'Article</label
+          >
+          <input
+            type="text"
+            id="title"
+            formControlName="title"
+            class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+          />
+          <span
+            class="text-red-500 text-xs italic"
+            *ngIf="!form.get('title')?.valid && form.get('title')?.touched"
+            >Veuillez entrer un titre valide</span
+          >
+        </div>
+        <div class="mb-4" *ngIf="editMode">
+          <label for="reference" class="block text-gray-700 font-bold mb-2"
+            >Reférence</label
+          >
+          <input
+            type="text"
+            id="reference"
+            formControlName="reference"
+            class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+            [readonly]="true"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="description" class="block text-gray-700 font-bold mb-2"
+            >Description</label
+          >
+          <textarea
+            type="text"
+            id="description"
+            formControlName="description"
+            class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+          ></textarea>
+          <span
+            class="text-red-500 text-xs italic"
+            *ngIf="!form.get('title')?.valid && form.get('title')?.touched"
+            >Veuillez entrer une description valide</span
+          >
+        </div>
+        <div class="mb-4">
+          <label for="category" class="block text-gray-700 font-bold mb-2"
+            >Catégorie</label
+          >
+          <select
+            id="category"
+            formControlName="category"
+            class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+          >
+            <option value="" disabled selected>Choisir une catégorie</option>
+            <option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="type" class="block text-gray-700 font-bold mb-2"
+            >Type</label
+          >
+          <select
+            id="type"
+            formControlName="type"
+            class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+          >
+            <option value="" disabled selected>Choisir un type</option>
+            <option *ngFor="let type of types" [value]="type">
+              {{ type }}
+            </option>
+          </select>
+        </div>
+        <div class="flex gap-2 flex-row">
+          <div class="mb-4">
+            <label for="height" class="block text-gray-700 font-bold mb-2"
+              >Hauteur</label
+            >
+            <input
+              type="number"
+              id="height"
+              [min]="0"
+              formControlName="height"
+              class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+            />
+            <span
+              class="text-red-500 text-xs italic"
+              *ngIf="!form.get('height')?.valid && form.get('height')?.touched"
+              >Veuillez entrer une hauteur valide</span
+            >
+          </div>
+          <div class="mb-4">
+            <label for="width" class="block text-gray-700 font-bold mb-2"
+              >Largeur</label
+            >
+            <input
+              type="number"
+              id="width"
+              formControlName="width"
+              class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+            />
+            <span
+              class="text-red-500 text-xs italic"
+              *ngIf="!form.get('width')?.valid && form.get('width')?.touched"
+              >Veuillez entrer une largeur valide</span
+            >
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="width" class="block text-gray-700 font-bold mb-2"
+            >Prix</label
+          >
+          <input
+            type="number"
+            id="width"
+            formControlName="width"
+            class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+          />
+          <span
+            class="text-red-500 text-xs italic"
+            *ngIf="!form.get('width')?.valid && form.get('width')?.touched"
+            >Veuillez entrer une largeur valide</span
+          >
+        </div>
+        <label for="width" class="block text-gray-700 font-bold"
+          >Couleurs</label
+        >
+        <div class="mb-4 flex flex-row flex-wrap gap-3" *ngIf="colors">
+          <div *ngFor="let color of colors">
+            <div class="w-1/4 px-2 flex flex-row gap-2">
+              <input
+                class=""
+                type="checkbox"
+                [id]="color.name"
+                [value]="color.id"
+                formControlName="colorsId"
+              />
+              <label
+                [for]="color.name"
+                class="inline-block text-gray-700 font-bold mb-2"
+                >{{ color.name }}</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="photo" class="block text-gray-700 font-bold mb-2"
+            >Ajouter une image</label
+          >
+          <input
+            type="file"
+            id="photo"
+            (change)="onFileChange($event)"
+            class="border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+          />
+          <span
+            class="text-red-500 text-xs italic"
+            *ngIf="form.get('img')?.hasError('invalidFileType')"
+            >Type invalide.</span
+          >
+          <span
+            class="text-red-500 text-xs italic"
+            *ngIf="form.get('img')?.hasError('sizeExceeded')"
+            >Taille de fichier trop grande. Maximum taille est 10 MB.</span
+          >
+        </div>
+
+        <div class="flex justify-center">
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+          >
+            Sauvegarder
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

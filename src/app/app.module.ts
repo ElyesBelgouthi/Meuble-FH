@@ -28,6 +28,7 @@ import { ColorsEditComponent } from './pages/admin-space/colors/colors-edit/colo
 import { ColorsListComponent } from './pages/admin-space/colors/colors-list/colors-list.component';
 import { ItemsListComponent } from './pages/admin-space/items/items-list/items-list.component';
 import { ItemsEditComponent } from './pages/admin-space/items/items-edit/items-edit.component';
+import { ItemSearchPipe } from './pipes/item-search-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ItemsEditComponent } from './pages/admin-space/items/items-edit/items-e
     ColorsListComponent,
     ItemsListComponent,
     ItemsEditComponent,
+    ItemSearchPipe,
   ],
   imports: [
     BrowserModule,
