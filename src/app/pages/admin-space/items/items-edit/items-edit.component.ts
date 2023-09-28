@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Color } from 'src/app/models/color.model';
 import { Item } from 'src/app/models/item.model';
@@ -19,8 +25,8 @@ export class ItemsEditComponent implements OnInit {
   id!: number;
   item!: Item;
   imageSrc!: any;
-  previewImages!: any[];
-  sendingPhotos!: any[];
+  previewImages: any[] = [];
+  sendingPhotos: any[] = [];
   colors!: Color[];
   colorIds!: number[];
   categories: string[] = ['Chaise', 'Bureau', 'Etagère', 'Comptoir'];
@@ -38,6 +44,9 @@ export class ItemsEditComponent implements OnInit {
     this.colorService.getColors().subscribe((colors: Color[]) => {
       this.colors = colors;
     });
+
+    this.initForm();
+    // });
     // this.route.params.subscribe((params: Params) => {
     //   this.id = params['id'];
     //   this.editMode = params['id'] !== undefined;
@@ -58,7 +67,6 @@ export class ItemsEditComponent implements OnInit {
     //     this.initForm();
     //   });
     // } else {
-    this.initForm();
     // }
   }
 
@@ -73,7 +81,7 @@ export class ItemsEditComponent implements OnInit {
       width: new FormControl(0, [Validators.required]),
       price: new FormControl(0, [Validators.required]),
 
-      colorIds: new FormControl([], [Validators.required]),
+      colorIds: new FormArray([], [Validators.required]),
 
       photo: new FormControl(null, [fileValidator]),
       photos: new FormControl([], []),
@@ -95,6 +103,20 @@ export class ItemsEditComponent implements OnInit {
     }
   }
 
+  onColorCheckboxChange(event: any, colorId: number) {
+    const colorIdsFormArray = this.form.get('colorIds') as FormArray;
+    if (event.target.checked) {
+      colorIdsFormArray.push(new FormControl(colorId));
+    } else {
+      const index = colorIdsFormArray.controls.findIndex(
+        (x: AbstractControl) => x.value === colorId
+      );
+      if (index >= 0) {
+        colorIdsFormArray.removeAt(index);
+      }
+    }
+  }
+
   onFileChange(event: any) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
@@ -108,6 +130,7 @@ export class ItemsEditComponent implements OnInit {
       });
       this.previewImages.push(URL.createObjectURL(selectedFile));
     }
+    console.log(this.previewImages);
   }
 
   onSubmit() {
@@ -121,14 +144,15 @@ export class ItemsEditComponent implements OnInit {
       formData.append('width', this.form.value.width);
       formData.append('price', this.form.value.price);
       formData.append('colorIds', this.form.value.colorIds);
-      formData.append('photos', this.form.value.photos);
+      if (this.sendingPhotos.length > 0)
+        formData.append('photos', this.form.value.photos);
 
       if (this.editMode) {
         this.itemService.updateItem(this.id, formData).subscribe();
       } else {
         this.itemService.addItem(formData).subscribe();
       }
-      this.router.navigate(['admin', 'colors']);
+      this.router.navigate(['admin', 'items']);
     }
   }
 }

@@ -2,16 +2,7 @@
   <div class="container mx-auto">
     <div class="flex flex-col items-center justify-center mb-8">
       <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Article</h1>
-      <div
-        class="w-72 h-72 rounded-lg ring-1 ring-black"
-        *ngFor="let previewImage of previewImages"
-      >
-        <img
-          [src]="previewImage"
-          alt="image"
-          class="w-full h-full rounded-lg"
-        />
-      </div>
+
       <div
         class="w-72 h-72 rounded-lg ring-1 ring-black"
         *ngIf="imageSrc && !previewImages"
@@ -153,17 +144,18 @@
         >
         <div class="mb-4 flex flex-row flex-wrap gap-3" *ngIf="colors">
           <div *ngFor="let color of colors">
-            <div class="w-1/4 px-2 flex flex-row gap-2">
+            <div class="w-1/4 px-2 flex flex-row gap-2 items-center">
               <input
-                class=""
+                class="flex-grow flex-shrink-0"
                 type="checkbox"
                 [id]="color.name"
                 [value]="color.id"
-                formControlName="colorsId"
+                formControlName="colorIds"
+                (change)="onColorCheckboxChange($event, color.id)"
               />
               <label
                 [for]="color.name"
-                class="inline-block text-gray-700 font-bold mb-2"
+                class="inline-block text-gray-700 font-bold mb-2 flex-grow flex-shrink-0"
                 >{{ color.name }}</label
               >
             </div>
@@ -182,14 +174,26 @@
           />
           <span
             class="text-red-500 text-xs italic"
-            *ngIf="form.get('img')?.hasError('invalidFileType')"
+            *ngIf="form.get('photo')?.hasError('invalidFileType')"
             >Type invalide.</span
           >
           <span
             class="text-red-500 text-xs italic"
-            *ngIf="form.get('img')?.hasError('sizeExceeded')"
+            *ngIf="form.get('photo')?.hasError('sizeExceeded')"
             >Taille de fichier trop grande. Maximum taille est 10 MB.</span
           >
+        </div>
+        <div class="flex lg:flex-row flex-col flex-wrap">
+          <div
+            class="w-72 h-72 rounded-lg ring-1 ring-black"
+            *ngFor="let previewImage of previewImages"
+          >
+            <img
+              [src]="previewImage"
+              alt="image"
+              class="w-full h-full rounded-lg"
+            />
+          </div>
         </div>
 
         <div class="flex justify-center">
