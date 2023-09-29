@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment';
 import { Item } from '../models/item.model';
+import { Params } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export default class ItemService {
@@ -189,8 +190,8 @@ export default class ItemService {
 
   constructor(private http: HttpClient) {}
 
-  getItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(this.BaseURL + '/item');
+  getItems(params: Params): Observable<Item[]> {
+    return this.http.get<Item[]>(this.BaseURL + '/item', { params });
   }
 
   getItemById(id: number): Observable<Item> {

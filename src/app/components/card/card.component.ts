@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Item } from 'src/app/models/item.model';
 
 @Component({
   selector: 'app-card',
@@ -6,5 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./card.component.css'],
 })
 export class CardComponent {
-  @Input('item') item: any;
+  @Input('item') item!: Item;
+  @Input('src') src: any;
 }

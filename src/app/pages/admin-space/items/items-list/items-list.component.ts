@@ -9,16 +9,15 @@ import ItemService from 'src/app/services/item.service';
 })
 export class ItemsListComponent implements OnInit {
   p: number = 1;
-  items!: any[];
+  items!: Item[];
   searchText!: string;
 
   constructor(private itemService: ItemService) {}
 
   ngOnInit(): void {
-    // this.itemService.getItems().subscribe((items: Item[]) => {
-    //   this.items = items;
-    // });
-    this.items = this.itemService.items;
+    this.itemService.getItems({}).subscribe((items: Item[]) => {
+      this.items = items;
+    });
   }
   onSearch(event: any) {
     this.searchText = event.target?.value;

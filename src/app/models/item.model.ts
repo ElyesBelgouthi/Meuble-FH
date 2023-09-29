@@ -11,7 +11,7 @@ export class Item {
     public height: number,
     public width: number,
     public price: number,
-    public colorIds: number[],
+    public colors: Color[],
     public reference: string,
     public photos: Photo[]
   ) {}

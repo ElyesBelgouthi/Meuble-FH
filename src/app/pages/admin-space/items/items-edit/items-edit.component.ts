@@ -29,6 +29,7 @@ export class ItemsEditComponent implements OnInit {
   sendingPhotos: any[] = [];
   colors!: Color[];
   colorIds!: number[];
+  pickedColors: number[] = [];
   categories: string[] = ['Chaise', 'Bureau', 'Etagère', 'Comptoir'];
   types: string[] = ['Moderne', 'Classique'];
 
@@ -43,31 +44,21 @@ export class ItemsEditComponent implements OnInit {
   ngOnInit(): void {
     this.colorService.getColors().subscribe((colors: Color[]) => {
       this.colors = colors;
-    });
 
-    this.initForm();
-    // });
-    // this.route.params.subscribe((params: Params) => {
-    //   this.id = params['id'];
-    //   this.editMode = params['id'] !== undefined;
-    // });
-    // if (this.editMode) {
-    //   this.itemService.getItemById(this.id).subscribe((item: Item) => {
-    //     this.item = item;
-    //     this.imageService.getImage(item.path).subscribe(
-    //       (imageData) => {
-    //         const reader = new FileReader();
-    //         reader.onload = (e) => {
-    //           this.imageSrc = e.target?.result;
-    //         };
-    //         reader.readAsDataURL(imageData);
-    //       },
-    //       (error) => {}
-    //     );
-    //     this.initForm();
-    //   });
-    // } else {
-    // }
+      this.initForm();
+    });
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.editMode = params['id'] !== undefined;
+    });
+    if (this.editMode) {
+      this.itemService.getItemById(this.id).subscribe((item: Item) => {
+        this.item = item;
+        this.pickedColors = this.item.colors.map((color: Color) => color.id);
+        this.initForm();
+      });
+    } else {
+    }
   }
 
   private initForm() {
@@ -81,10 +72,8 @@ export class ItemsEditComponent implements OnInit {
       width: new FormControl(0, [Validators.required]),
       price: new FormControl(0, [Validators.required]),
 
-      colorIds: new FormArray([], [Validators.required]),
-
+      // colorIds: new FormControl('', [Validators.required]),
       photo: new FormControl(null, [fileValidator]),
-      photos: new FormControl([], []),
     });
 
     if (this.editMode && this.item) {
@@ -98,23 +87,21 @@ export class ItemsEditComponent implements OnInit {
         height: this.item.height,
         width: this.item.width,
         price: this.item.price,
-        colorIds: this.item.colorIds,
+        // colorIds: this.item.colorIds,
       });
     }
   }
 
   onColorCheckboxChange(event: any, colorId: number) {
-    const colorIdsFormArray = this.form.get('colorIds') as FormArray;
     if (event.target.checked) {
-      colorIdsFormArray.push(new FormControl(colorId));
+      this.pickedColors.push(colorId);
     } else {
-      const index = colorIdsFormArray.controls.findIndex(
-        (x: AbstractControl) => x.value === colorId
-      );
+      const index = this.pickedColors.indexOf(colorId);
       if (index >= 0) {
-        colorIdsFormArray.removeAt(index);
+        this.pickedColors.splice(index, 1);
       }
     }
+    console.log(this.pickedColors);
   }
 
   onFileChange(event: any) {
@@ -130,11 +117,11 @@ export class ItemsEditComponent implements OnInit {
       });
       this.previewImages.push(URL.createObjectURL(selectedFile));
     }
-    console.log(this.previewImages);
   }
 
   onSubmit() {
-    if (this.form.valid) {
+    // console.log(this.form);
+    if (this.form.valid && this.pickedColors.length > 0) {
       const formData = new FormData();
       formData.append('title', this.form.value.title);
       formData.append('description', this.form.value.description);
@@ -143,9 +130,9 @@ export class ItemsEditComponent implements OnInit {
       formData.append('height', this.form.value.height);
       formData.append('width', this.form.value.width);
       formData.append('price', this.form.value.price);
-      formData.append('colorIds', this.form.value.colorIds);
+      formData.append('colorIds', JSON.stringify(this.pickedColors));
       if (this.sendingPhotos.length > 0)
-        formData.append('photos', this.form.value.photos);
+        for (let photo of this.sendingPhotos) formData.append('photos', photo);
 
       if (this.editMode) {
         this.itemService.updateItem(this.id, formData).subscribe();

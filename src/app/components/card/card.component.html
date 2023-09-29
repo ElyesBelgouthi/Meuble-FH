@@ -2,17 +2,15 @@
   class="border-2 w-60 h-80 cursor-pointer overflow-hidden transition-transform transform hover:scale-105 shadow-2xl"
 >
   <div class="w-full h-1/2">
-    <img
-      src="{{ item.image }}"
-      class="object-cover w-full h-full"
-      alt="image"
-    />
+    <img [src]="src" class="object-cover w-full h-full" alt="image" />
   </div>
   <div class="p-4">
     <h1 class="text-xl font-semibold mb-2 hover:underline hover:text-red-700">
       {{ item.title }}
     </h1>
-    <h2 class="text-gray-600 mb-1 text-sm">{{ item.subTitle }}</h2>
+    <h2 class="text-gray-600 mb-1 text-sm">
+      {{ item.description | truncate : 3 }}
+    </h2>
     <h2 class="text-gray-600 mb-2 text-sm">
       Dimensions: {{ item.height }}*{{ item.width }} cm²
     </h2>

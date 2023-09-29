@@ -1,12 +1,16 @@
+<div class="min-h-screen w-full" *ngIf="isLoading">
+  <app-loader></app-loader>
+</div>
 <div
   class="container mx-auto mt-24 p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 w-full"
+  *ngIf="!isLoading"
 >
   <div class="grid-cols-1 lg:h-full lg:w-full">
     <div
       class="lg:col-span-1 relative lg:h-[580px] lg:w-full aspect-w-1 aspect-h-1 overflow-hidden rounded-lg shadow-xl"
     >
       <img
-        src="../../../assets/images/{{ currentImage }}"
+        [src]="currentImage"
         alt="Product Image"
         class="w-full h-full object-contain transform scale-100 transition-transform duration-300 ease-in-out hover:scale-110 cursor-zoom-in"
         id="mainImage"
@@ -16,70 +20,45 @@
       <!-- Small product images -->
       <div
         class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
-        (click)="changeImage('home-img-1.jpg')"
+        (click)="changeImage(i)"
+        *ngFor="let imageSrc of images; let i = index"
       >
         <img
-          src="../../../assets/images/home-img-1.jpg"
+          [src]="imageSrc"
           alt="Product Image 1"
-          class="w-full h-full object-cover"
-        />
-      </div>
-      <div
-        class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
-        (click)="changeImage('home-img-2.jpg')"
-      >
-        <img
-          src="../../../assets/images/home-img-2.jpg"
-          alt="Product Image 2"
-          class="w-full h-full object-cover"
-        />
-      </div>
-      <div
-        class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
-        (click)="changeImage('home-img-3.jpg')"
-      >
-        <img
-          src="../../../assets/images/home-img-3.jpg"
-          alt="Product Image 3"
-          class="w-full h-full object-cover"
-        />
-      </div>
-      <div
-        class="w-full h-24 overflow-hidden rounded-lg shadow-md cursor-pointer"
-        (click)="changeImage('home-img-4.jpg')"
-      >
-        <img
-          src="../../../assets/images/home-img-4.jpg"
-          alt="Product Image 4"
           class="w-full h-full object-cover"
         />
       </div>
     </div>
   </div>
 
-  <div class="lg:col-span-1 p-6 rounded-lg shadow-xl border border-gray-300">
-    <h1 class="text-4xl font-semibold text-gray-800">Product Name</h1>
+  <div
+    class="lg:col-span-1 p-6 rounded-lg shadow-xl border border-gray-300"
+    *ngIf="item"
+  >
+    <h1 class="text-4xl font-semibold text-gray-800">{{ item.title }}</h1>
     <p class="text-gray-600 text-lg mt-2">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque pariatur
-      veniam vero quasi est cupiditate mollitia, odit commodi eligendi animi
-      ratione. In minima debitis exercitationem, dicta quod delectus voluptate
-      quas!
+      {{ item.description }}
     </p>
     <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Dimensions</h2>
-    <p class="text-gray-600 text-lg mt-2">24*24 cm</p>
+    <p class="text-gray-600 text-lg mt-2">
+      {{ item.height }} * {{ item.width }} cm²
+    </p>
 
-    <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Couleurs</h2>
+    <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-2" *ngIf="colors">
+      Couleurs
+    </h2>
     <div class="flex gap-4 flex-wrap">
       <button
         class="w-20 h-20 rounded-lg ring-1 ring-black"
         *ngFor="let color of colors"
-        [ngClass]="{ 'border-2 border-blue-500': selectedColor === color }"
-        (click)="selectColor(color)"
-        [title]="color"
+        [ngClass]="{ 'border-2 border-blue-500': selectedColor === color.name }"
+        (click)="selectColor(color.name)"
+        [title]="color.name"
       >
         <img
-          [src]="'../../../assets/images/' + color"
-          [alt]="color"
+          [src]="colorImages[color.id]"
+          [alt]="color.name"
           class="w-full h-full rounded-lg"
         />
       </button>
@@ -98,15 +77,6 @@
       >
         <i class="fa-solid fa-cart-plus"></i>&nbsp; Ajouter au panier
       </button>
-    </div>
-
-    <div class="mt-6">
-      <h2 class="text-2xl font-semibold text-gray-800">Product Details</h2>
-      <ul class="list-disc pl-6 mt-2 text-gray-700">
-        <li>Detail 1</li>
-        <li>Detail 2</li>
-        <li>Detail 3</li>
-      </ul>
     </div>
   </div>
 </div>

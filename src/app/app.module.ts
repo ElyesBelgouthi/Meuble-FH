@@ -28,7 +28,8 @@ import { ColorsEditComponent } from './pages/admin-space/colors/colors-edit/colo
 import { ColorsListComponent } from './pages/admin-space/colors/colors-list/colors-list.component';
 import { ItemsListComponent } from './pages/admin-space/items/items-list/items-list.component';
 import { ItemsEditComponent } from './pages/admin-space/items/items-edit/items-edit.component';
-import { ItemSearchPipe } from './pipes/item-search-pipe.pipe';
+import { ItemSearchPipe } from './pipes/item-search.pipe';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ItemSearchPipe } from './pipes/item-search-pipe.pipe';
     ItemsListComponent,
     ItemsEditComponent,
     ItemSearchPipe,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

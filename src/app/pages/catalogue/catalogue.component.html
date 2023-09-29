@@ -65,15 +65,11 @@
         </ul>
       </div>
     </div>
-    <div class="flex justify-between">
+    <div class="flex flex-row justify-center">
       <a
         *ngIf="filterExpanded"
-        class="bg-blue-700 hover:bg-blue-dark text-white py-3 px-5 rounded-full transition-colors duration-300 cursor-pointer text-lg"
-        ><i class="fa-solid fa-filter"></i>&nbsp;Filtrer
-      </a>
-      <a
-        *ngIf="filterExpanded"
-        class="bg-orange-500 hover:bg-orange-600 text-white py-4 px-5 rounded-full transition-colors duration-300 cursor-pointer text-sm"
+        class="bg-orange-500 hover:bg-orange-600 text-white py-5 px-7 rounded-full transition-colors duration-300 cursor-pointer text-lg"
+        (click)="reloadPage()"
         >Réinitialiser
       </a>
     </div>
@@ -81,6 +77,7 @@
 
   <section
     class="min-h-screen lg:mt-20 lg:ml-60 lg:w-780px flex flex-col gap-7 items-center"
+    *ngIf="items"
   >
     <div class="relative w-md md:w-1/2 xl:w-1/2 mx-auto">
       <div
@@ -122,11 +119,11 @@
     >
       <app-card
         *ngFor="
-          let item of items | paginate : { itemsPerPage: 12, currentPage: p };
-          let i = index
+          let item of items | paginate : { itemsPerPage: 12, currentPage: p }
         "
         [item]="item"
-        [routerLink]="['/details', i]"
+        [src]="imagesSrc[item.id]"
+        [routerLink]="['/details', item.id]"
       ></app-card>
     </div>
     <pagination-controls

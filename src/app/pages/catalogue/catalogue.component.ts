@@ -1,6 +1,8 @@
 import { STRING_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Item } from 'src/app/models/item.model';
+import { ImageService } from 'src/app/services/image.service';
 import ItemService from 'src/app/services/item.service';
 
 @Component({
@@ -10,8 +12,8 @@ import ItemService from 'src/app/services/item.service';
 })
 export class CatalogueComponent implements OnInit {
   p: number = 1;
-
-  items = this.itemService.items;
+  items!: Item[];
+  imagesSrc: any = {};
   filters = [
     {
       name: 'Categorie',
@@ -20,7 +22,7 @@ export class CatalogueComponent implements OnInit {
         { name: 'Chaise', selected: false },
         { name: 'Bureau', selected: false },
         { name: 'Comptoir', selected: false },
-        { name: 'Étagère', selected: false },
+        { name: 'Etagère', selected: false },
       ],
     },
     {
@@ -37,7 +39,8 @@ export class CatalogueComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private itemService: ItemService
+    private itemService: ItemService,
+    private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +48,24 @@ export class CatalogueComponent implements OnInit {
       if (params) {
         this.updateSubcategories(params['categories'], params['types']);
       }
+      this.itemService.getItems(params).subscribe((items: Item[]) => {
+        this.items = items;
+        console.log(items);
+        for (let item of items) {
+          if (item && item.photos && item.photos.length > 0) {
+            this.imageService.getImage(item.photos[0].path).subscribe(
+              (imageData) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                  this.imagesSrc[item.id] = e.target?.result;
+                };
+                reader.readAsDataURL(imageData);
+              },
+              (error) => {}
+            );
+          }
+        }
+      });
     });
   }
 
@@ -61,7 +82,17 @@ export class CatalogueComponent implements OnInit {
     this.setURLQueryParams();
   }
 
+  reloadPage() {
+    const newUrl = window.location.pathname;
+    window.history.replaceState({}, '', newUrl);
+
+    // Reload the page
+    window.location.reload();
+  }
+
   updateSubcategories(categories: any, types: any) {
+    console.log(categories, types);
+
     if (categories && categories?.length > 0) {
       this.filters[0].subcategories.forEach((Element) => {
         if (categories.split(',').indexOf(Element.name) !== -1) {
