@@ -63,17 +63,22 @@
         />
       </button>
     </div>
+    <p class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Prix Unitaire</p>
+    <p class="text-orange-600 font-bold text-2xl mt-2">
+      {{ item.price | currency : "TND" }}
+    </p>
 
     <div class="flex items-center mt-4">
       <input
         type="number"
         class="w-20 lg:w-24 h-16 border border-gray-400 rounded-md px-2 text-center text-gray-800 text-lg font-bold"
         min="1"
-        value="1"
+        [(ngModel)]="quantity"
       />
 
       <button
         class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 px-6 rounded-full w-96 shadow-md transition-transform duration-300 ease-in-out transform hover:scale-105 focus:outline-none ml-5"
+        (click)="addToCart()"
       >
         <i class="fa-solid fa-cart-plus"></i>&nbsp; Ajouter au panier
       </button>

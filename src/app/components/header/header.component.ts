@@ -18,10 +18,6 @@ export class HeaderComponent {
     this.isCatalogueOpen = state;
   }
 
-  toggleUser(state: boolean) {
-    this.isUserOpen = state;
-  }
-
   toggleMenuSm() {
     this.isMenuOpen = !this.isMenuOpen;
   }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Color } from 'src/app/models/color.model';
+import { ItemCart } from 'src/app/models/item-cart.model';
 import { Item } from 'src/app/models/item.model';
+import { CartService } from 'src/app/services/cart.service';
 import { ImageService } from 'src/app/services/image.service';
 import ItemService from 'src/app/services/item.service';
 
@@ -16,7 +18,7 @@ export class DetailsComponent implements OnInit {
   item!: Item;
   id!: number;
   images: any[] = [];
-  selectedColor: string | null = null;
+  selectedColor!: string;
   isLoading = true;
   // colors = ['color-1.jpg', 'color-2.jpg', 'color-3.png'];
   colorImages: any[] = [];
@@ -25,7 +27,8 @@ export class DetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private itemService: ItemService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -116,12 +119,17 @@ export class DetailsComponent implements OnInit {
     this.selectedColor = color;
   }
 
-  increment(mode: boolean) {
-    if (mode) {
-      this.quantity++;
-    } else if (this.quantity > 1) {
-      this.quantity--;
-    }
-    console.log(this.quantity);
+  addToCart() {
+    this.cartService.addToCart(
+      new ItemCart(
+        this.item.reference,
+        this.item.title,
+        this.quantity,
+        this.selectedColor,
+        this.item.price * this.quantity,
+        this.item.photos[0].path,
+        this.item.id
+      )
+    );
   }
 }

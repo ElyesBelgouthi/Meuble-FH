@@ -16,7 +16,7 @@ import { DetailsComponent } from './pages/details/details.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { AdminSpaceComponent } from './pages/admin-space/admin-space.component';
 import { LoginComponent } from './pages/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/admin-space/dashboard/dashboard.component';
 import { ItemsComponent } from './pages/admin-space/items/items.component';
@@ -64,6 +64,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],

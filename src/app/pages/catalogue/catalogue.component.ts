@@ -1,4 +1,3 @@
-import { STRING_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Item } from 'src/app/models/item.model';
@@ -50,7 +49,6 @@ export class CatalogueComponent implements OnInit {
       }
       this.itemService.getItems(params).subscribe((items: Item[]) => {
         this.items = items;
-        console.log(items);
         for (let item of items) {
           if (item && item.photos && item.photos.length > 0) {
             this.imageService.getImage(item.photos[0].path).subscribe(
@@ -91,8 +89,6 @@ export class CatalogueComponent implements OnInit {
   }
 
   updateSubcategories(categories: any, types: any) {
-    console.log(categories, types);
-
     if (categories && categories?.length > 0) {
       this.filters[0].subcategories.forEach((Element) => {
         if (categories.split(',').indexOf(Element.name) !== -1) {
