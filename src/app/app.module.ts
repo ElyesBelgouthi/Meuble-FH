@@ -30,6 +30,7 @@ import { ItemsListComponent } from './pages/admin-space/items/items-list/items-l
 import { ItemsEditComponent } from './pages/admin-space/items/items-edit/items-edit.component';
 import { ItemSearchPipe } from './pipes/item-search.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ScrollToBottomDirective } from './scroll-to-bottom.directive';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     ItemsEditComponent,
     ItemSearchPipe,
     LoaderComponent,
+    ScrollToBottomDirective,
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isCatalogueOpen: boolean = false;
   isMenuOpen: boolean = false;
   isUserOpen: boolean = false;
@@ -13,6 +14,16 @@ export class HeaderComponent {
   userActions: string[] = ['Se connecter', 'Créer un compte'];
 
   categories: string[] = ['Chaise', 'Étagère', 'Bureau', 'Comptoir'];
+  cartSize: number = 0;
+
+  constructor(private cartService: CartService) {}
+  ngOnInit(): void {
+    this.cartSize = this.cartService.getCartSize();
+
+    this.cartService.cartUpdated.subscribe((size: number) => {
+      this.cartSize = size;
+    });
+  }
 
   toggleCatalogue(state: boolean) {
     this.isCatalogueOpen = state;
@@ -20,5 +31,9 @@ export class HeaderComponent {
 
   toggleMenuSm() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  scrollToBottom() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }
 }

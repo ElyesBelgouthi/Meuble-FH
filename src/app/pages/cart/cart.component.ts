@@ -71,4 +71,9 @@ export class CartComponent implements OnInit {
     this.cartService.deleteItemFromCart(itemId, color);
     this.calcTotal();
   }
+
+  changeQuantity(index: number, event: any) {
+    const value: number = parseInt(event.target.value);
+    this.cartService.changeQuantity(index, value);
+  }
 }

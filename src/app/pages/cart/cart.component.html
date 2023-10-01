@@ -80,12 +80,15 @@
             class="mt-4 lg:mt-0 lg:ml-4 flex items-center flex-col lg:flex-row"
           >
             <div class="mb-2 lg:mb-0 lg:mr-4">
-              <label for="quantity{{ i }}" class="sr-only">Quantity</label>
+              <label for="quantity{{ i + 8 * (p - 1) }}" class="sr-only"
+                >Quantity</label
+              >
               <input
                 type="number"
                 min="1"
                 class="w-16 p-2 border border-gray-300 rounded"
                 [value]="item.quantity"
+                (change)="changeQuantity(i + 8 * (p - 1), $event)"
               />
             </div>
 

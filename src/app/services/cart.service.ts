@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ItemCart } from '../models/item-cart.model';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
   private cart: ItemCart[] = [];
+  cartUpdated: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {
     const savedCart = localStorage.getItem('cart');
@@ -37,6 +38,7 @@ export class CartService {
 
     // Save the updated cart to local storage
     localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.cartUpdated.emit(this.cart.length);
   }
 
   getCart() {
@@ -52,5 +54,17 @@ export class CartService {
       this.cart.splice(itemIndex, 1);
       localStorage.setItem('cart', JSON.stringify(this.cart));
     }
+    this.cartUpdated.emit(this.cart.length);
+  }
+  getCartSize(): number {
+    if (this.cart) {
+      return this.cart.length;
+    } else return 0;
+  }
+
+  changeQuantity(index: number, value: number) {
+    this.cart[index].quantity = value;
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.cartUpdated.emit(this.cart.length);
   }
 }

@@ -1,13 +1,5 @@
 <main>
   <app-header></app-header>
   <router-outlet></router-outlet>
-  <app-footer></app-footer>
-  <div class="fixed bottom-6 lg:hidden right-6">
-    <a
-      [routerLink]="['/cart']"
-      class="bg-blue-dark hover:bg-orange-500 hover:border-orange-500 text-white text-2xl w-14 h-14 flex items-center justify-center rounded-full shadow-md transform transition-transform duration-300 ease-in-out hover:scale-105"
-    >
-      <i class="fa-solid fa-cart-shopping"></i>
-    </a>
-  </div>
+  <app-footer id="footer"></app-footer>
 </main>

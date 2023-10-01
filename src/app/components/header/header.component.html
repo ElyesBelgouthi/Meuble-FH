@@ -3,6 +3,7 @@
 >
   <div class="h-16 w-20 cursor-pointer">
     <img
+      [routerLink]="['/']"
       class="w-full h-full object-cover"
       src="../../../assets/images/logo.png"
       alt="logo"
@@ -39,9 +40,9 @@
           >Catalogue
         </a>
         <a
-          href="#"
           class="px-4 text-lg py-2 hover:bg-blue-dark hover:text-orange-500 cursor-pointer transition-all duration-300 ease-in-out"
           (click)="toggleMenuSm()"
+          appScrollToBottom
           >Contact
         </a>
       </div>
@@ -90,19 +91,37 @@
 
       <li>
         <a
-          href="#contact"
           class="p-4 hover:bg-blue-dark hover:text-beige-light rounded-2xl cursor-pointer transition-all duration-300 ease-in-out"
+          appScrollToBottom
           >Contact</a
         >
       </li>
-      <li>
+      <li class="relative">
         <a
           [routerLink]="['/cart']"
-          class="bg-blue-dark hover:bg-orange-500 hover:border-orange-500 text-white text-2xl w-14 h-14 flex items-center justify-center rounded-full shadow-md transform transition-transform duration-300 ease-in-out hover:scale-105"
+          class="bg-blue-dark hover:bg-orange-500 hover:border-orange-500 text-white text-2xl w-14 h-14 flex items-center justify-center rounded-full shadow-md transform transition-transform duration-300 ease-in-out hover:scale-105 relative"
         >
           <i class="fa-solid fa-cart-shopping"></i>
+          <span
+            *ngIf="cartSize > 0"
+            class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2 py-1 text-xs font-semibold"
+            >{{ cartSize }}</span
+          ><!-- Replace '3' with the actual item count -->
         </a>
       </li>
     </ul>
   </nav>
 </header>
+<div class="fixed bottom-6 lg:hidden right-6">
+  <a
+    [routerLink]="['/cart']"
+    class="bg-blue-dark hover:bg-orange-500 hover:border-orange-500 text-white text-2xl w-14 h-14 flex items-center justify-center rounded-full shadow-md transform transition-transform duration-300 ease-in-out hover:scale-105 relative"
+  >
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span
+      *ngIf="cartSize > 0"
+      class="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2 py-1 text-xs font-semibold"
+      >{{ cartSize }}</span
+    ><!-- Replace '3' with the actual item count -->
+  </a>
+</div>
