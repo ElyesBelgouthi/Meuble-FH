@@ -16,11 +16,16 @@ import { ItemsListComponent } from './pages/admin-space/items/items-list/items-l
 import { ItemsEditComponent } from './pages/admin-space/items/items-edit/items-edit.component';
 import { OrdersListComponent } from './pages/admin-space/orders/orders-list/orders-list.component';
 import { OrdersEditComponent } from './pages/admin-space/orders/orders-edit/orders-edit.component';
+import { CartConfirmationComponent } from './pages/cart/cart-confirmation/cart-confirmation.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'catalogue', component: CatalogueComponent },
-  { path: 'cart', component: CartComponent },
+  {
+    path: 'cart',
+    component: CartComponent,
+    children: [{ path: 'confirmation', component: CartConfirmationComponent }],
+  },
   { path: 'details/:id', component: DetailsComponent },
   { path: 'login', component: LoginComponent },
   {

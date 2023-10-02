@@ -120,7 +120,6 @@ export class ItemsEditComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log(this.form);
     if (this.form.valid && this.pickedColors.length > 0) {
       const formData = new FormData();
       formData.append('title', this.form.value.title);

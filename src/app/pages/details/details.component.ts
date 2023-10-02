@@ -18,7 +18,7 @@ export class DetailsComponent implements OnInit {
   item!: Item;
   id!: number;
   images: any[] = [];
-  selectedColor!: string;
+  selectedColor: string = '';
   isLoading = true;
   // colors = ['color-1.jpg', 'color-2.jpg', 'color-3.png'];
   colorImages: any[] = [];

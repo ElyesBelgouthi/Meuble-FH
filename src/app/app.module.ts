@@ -31,6 +31,7 @@ import { ItemsEditComponent } from './pages/admin-space/items/items-edit/items-e
 import { ItemSearchPipe } from './pipes/item-search.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ScrollToBottomDirective } from './scroll-to-bottom.directive';
+import { CartConfirmationComponent } from './pages/cart/cart-confirmation/cart-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ScrollToBottomDirective } from './scroll-to-bottom.directive';
     ItemSearchPipe,
     LoaderComponent,
     ScrollToBottomDirective,
+    CartConfirmationComponent,
   ],
   imports: [
     BrowserModule,

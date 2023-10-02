@@ -34,6 +34,7 @@
           <!-- Command Button -->
           <button
             class="bg-gradient-to-r from-green-700 via-emerald-500 to-green-700 text-white text-3xl font-bold px-8 py-4 rounded-lg shadow-lg flex items-center space-x-4 transition-transform transform hover:scale-105 mb-5"
+            [routerLink]="['./confirmation']"
           >
             <i class="fa-solid fa-truck-fast"></i>&nbsp;Commander
           </button>
@@ -116,4 +117,5 @@
       </div>
     </div>
   </div>
+  <router-outlet></router-outlet>
 </main>

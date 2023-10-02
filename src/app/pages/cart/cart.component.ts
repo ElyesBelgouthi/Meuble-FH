@@ -23,6 +23,10 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCart();
+    this.cartService.cartUpdated.subscribe((size: number) => {
+      this.isCartEmpty = size === 0 || !this.cartItems;
+    });
+
     if (!this.cartItems || this.cartItems.length == 0) {
       this.isCartEmpty = true;
       this.isLoading = false;
