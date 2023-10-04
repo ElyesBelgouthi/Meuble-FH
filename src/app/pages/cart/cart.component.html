@@ -28,7 +28,7 @@
           >
             <i class="fa-solid fa-coins text-3xl"></i>&nbsp;
             <p class="text-xl font-semibold">&nbsp;&nbsp;Total:&nbsp;</p>
-            <p class="text-2xl font-bold">{{ total | currency : "TND" }}</p>
+            <p class="text-2xl font-bold">{{ total | customCurrency }}</p>
           </div>
 
           <!-- Command Button -->
@@ -70,10 +70,12 @@
 
             <div class="mt-2 text-sm text-gray-500">
               <p>
-                <span class="font-semibold">Reference:</span>
+                <span class="font-semibold">Reférence:</span>
                 {{ item.reference }}
               </p>
-              <p><span class="font-semibold">Color:</span> {{ item.color }}</p>
+              <p *ngIf="item.color.length > 0">
+                <span class="font-semibold">Couleur:</span> {{ item.color }}
+              </p>
             </div>
           </div>
 
@@ -89,12 +91,12 @@
                 min="1"
                 class="w-16 p-2 border border-gray-300 rounded"
                 [value]="item.quantity"
-                (change)="changeQuantity(i + 8 * (p - 1), $event)"
+                (input)="changeQuantity(i + 8 * (p - 1), $event)"
               />
             </div>
 
             <p class="text-lg font-semibold text-gray-800">
-              {{ item.price | currency : "TND" }}
+              {{ item.price | customCurrency }}
             </p>
 
             <button

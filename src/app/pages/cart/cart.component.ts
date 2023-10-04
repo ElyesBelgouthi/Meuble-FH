@@ -25,6 +25,7 @@ export class CartComponent implements OnInit {
     this.cartItems = this.cartService.getCart();
     this.cartService.cartUpdated.subscribe((size: number) => {
       this.isCartEmpty = size === 0 || !this.cartItems;
+      this.calcTotal();
     });
 
     if (!this.cartItems || this.cartItems.length == 0) {
@@ -64,11 +65,7 @@ export class CartComponent implements OnInit {
   }
 
   calcTotal() {
-    if (this.cartItems && this.cartItems.length > 0) {
-      this.total = this.cartItems.reduce((acc, item) => acc + item.price, 0);
-    } else {
-      this.total = 0;
-    }
+    this.total = this.cartService.calcTotal();
   }
 
   deleteItemFromCart(itemId: number, color: string) {

@@ -1,1 +1,105 @@
-<p>orders-list works!</p>
+<div
+  class="bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 text-white min-h-screen py-8 lg:px-16 px-4 mt-20"
+>
+  <div class="mx-auto">
+    <div class="flex items-center justify-between mb-8">
+      <h1 class="text-4xl font-extrabold text-gray-100">Commandes</h1>
+    </div>
+
+    <div
+      class="mb-4 flex flex-row items-center space-x-4 w-full justify-center"
+    >
+      <input
+        type="text"
+        placeholder="Search..."
+        class="rounded-full px-4 py-2 w-1/2 text-black font-s bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md"
+        (input)="onSearch($event)"
+      />
+      <button
+        class="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-2 shadow-md"
+      >
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <div
+      class="mb-4 flex flex-row items-center space-x-4 w-full justify-center text-lg text-white p-4 rounded-lg"
+    >
+      <pagination-controls
+        (pageChange)="p = $event"
+        previousLabel="Précédent"
+        nextLabel="Suivant"
+        class="!text-white"
+        previousIconClass="!text-white"
+        nextIconClass="!text-white"
+      ></pagination-controls>
+    </div>
+
+    <div class="bg-gray-200 rounded-lg shadow-md p-4">
+      <div class="flex justify-between p-2 rounded-t-lg">
+        <h3 class="text-lg font-semibold text-gray-800">Reférence</h3>
+        <h3 class="text-lg font-semibold text-gray-800">Nom et Prénom</h3>
+        <h3 class="text-lg font-semibold text-gray-800">Date</h3>
+        <h3 class="text-lg font-semibold text-gray-800">&nbsp;</h3>
+      </div>
+
+      <div
+        class="bill-card p-4 mt-4 cursor-pointer hover:bg-gray-100 transform hover:scale-105 transition duration-300 shadow-md rounded-lg bg-yellow-50"
+        *ngFor="
+          let order of orders
+            | orderSearch : searchText
+            | paginate : { itemsPerPage: 6, currentPage: p };
+          let i = index
+        "
+        [routerLink]="[order.id]"
+      >
+        <div class="flex justify-between items-center">
+          <h3 class="text-lg font-semibold text-gray-800">
+            {{ order.reference }}
+          </h3>
+          <p class="text-lg text-gray-600">
+            {{ order.lastName }} {{ order.firstName }}
+          </p>
+          <p class="text-lg text-gray-600">
+            {{ order.created_at | date : "dd/MM/yyyy HH:mm" }}
+          </p>
+
+          <p class="text-lg text-gray-600">
+            <button
+              class="bg-red-500 hover:bg-red-600 text-white font-semibold rounded-full p-2 shadow-md"
+              (click)="
+                onDelete(order.id, order.reference, i + 6 * (p - 1), $event)
+              "
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add this at the top of order-list.component.html -->
+<div
+  *ngIf="showConfirmDialog"
+  class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 backdrop-blur-lg"
+>
+  <div class="bg-white p-4 rounded-lg shadow-md w-96">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">
+      {{ confirmMessage }}
+    </h2>
+    <div class="flex justify-end">
+      <button
+        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full mr-2 transition duration-300 ease-in-out transform hover:scale-105"
+        (click)="cancelDelete()"
+      >
+        Cancel
+      </button>
+      <button
+        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+        (click)="confirmDelete()"
+      >
+        Confirm
+      </button>
+    </div>
+  </div>
+</div>

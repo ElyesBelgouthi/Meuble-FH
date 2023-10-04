@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   userActions: string[] = ['Se connecter', 'Créer un compte'];
 
-  categories: string[] = ['Chaise', 'Étagère', 'Bureau', 'Comptoir'];
+  categories: string[] = ['Chaise', 'Etagère', 'Bureau', 'Comptoir'];
   cartSize: number = 0;
 
   constructor(private cartService: CartService) {}

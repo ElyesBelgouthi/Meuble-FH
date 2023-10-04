@@ -15,7 +15,6 @@ export class CardComponent {
   constructor(private cartService: CartService) {}
   addToCart(event: any) {
     event.stopPropagation();
-    console.log(this.item);
     this.cartService.addToCart(
       new ItemCart(
         this.item.reference,
@@ -23,6 +22,7 @@ export class CardComponent {
 
         1,
         '',
+        this.item.price,
         this.item.price,
         this.item.photos[0].path,
         this.item.id

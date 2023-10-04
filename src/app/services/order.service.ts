@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment';
+import { Order } from '../models/order.model';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
@@ -8,7 +10,21 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
+  getOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.BaseURL + '/order');
+  }
+
+  getOrderById(id: number): Observable<Order> {
+    return this.http.get<Order>(this.BaseURL + '/order/' + id);
+  }
+
   addOrder(formData: any) {
-    this.http.post(this.BaseURL + '/order', formData).subscribe();
+    this.http
+      .post<Order>(this.BaseURL + '/order', formData)
+      .subscribe((order: Order) => {});
+  }
+
+  deleteOrder(id: number) {
+    this.http.delete(this.BaseURL + '/order/' + id);
   }
 }

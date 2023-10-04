@@ -5,6 +5,7 @@ export class ItemCart {
     public quantity: number,
     public color: string,
     public price: number,
+    public priceUC: number,
     public path: string,
     public id: number
   ) {}

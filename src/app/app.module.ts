@@ -32,6 +32,8 @@ import { ItemSearchPipe } from './pipes/item-search.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ScrollToBottomDirective } from './scroll-to-bottom.directive';
 import { CartConfirmationComponent } from './pages/cart/cart-confirmation/cart-confirmation.component';
+import { OrderSearchPipe } from './pipes/order-search.pipe';
+import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { CartConfirmationComponent } from './pages/cart/cart-confirmation/cart-c
     LoaderComponent,
     ScrollToBottomDirective,
     CartConfirmationComponent,
+    OrderSearchPipe,
+    CustomCurrencyPipe,
   ],
   imports: [
     BrowserModule,

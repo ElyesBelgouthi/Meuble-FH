@@ -14,6 +14,7 @@ import { OrderService } from 'src/app/services/order.service';
 export class CartConfirmationComponent implements OnInit {
   form!: FormGroup;
   cart!: ItemCart[];
+  totalPrice: number = 0;
 
   constructor(
     private router: Router,
@@ -23,6 +24,7 @@ export class CartConfirmationComponent implements OnInit {
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
+    this.totalPrice = this.cartService.calcTotal();
     this.form = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -46,6 +48,7 @@ export class CartConfirmationComponent implements OnInit {
       formData.append('firstName', this.form.value.firstName);
       formData.append('lastName', this.form.value.lastName);
       formData.append('phoneNumber', this.form.value.phoneNumber);
+      formData.append('totalPrice', String(this.totalPrice));
       formData.append('cart', JSON.stringify(this.cart));
 
       console.log('FormData:', formData);

@@ -14,7 +14,7 @@ import ItemService from 'src/app/services/item.service';
 })
 export class DetailsComponent implements OnInit {
   currentImage!: any;
-  quantity: number = 1;
+  quantity!: number;
   item!: Item;
   id!: number;
   images: any[] = [];
@@ -33,6 +33,7 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true; // Set isLoading to true initially
+    this.quantity = 1;
 
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
@@ -104,6 +105,9 @@ export class DetailsComponent implements OnInit {
     }
   }
 
+  changeQuantity(event: any) {
+    this.quantity = parseInt(event.target.value);
+  }
   setInitialCurrentImage(): void {
     // Set the initial currentImage
     if (this.images.length > 0) {
@@ -127,6 +131,7 @@ export class DetailsComponent implements OnInit {
         this.quantity,
         this.selectedColor,
         this.item.price * this.quantity,
+        this.item.price,
         this.item.photos[0].path,
         this.item.id
       )

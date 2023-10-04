@@ -1,1 +1,81 @@
-<p>orders-edit works!</p>
+<div class="py-8 px-4 mt-20" *ngIf="order">
+  <h2 class="text-3xl font-semibold mb-4">Détails de la commande</h2>
+  <div class="border border-gray-300 rounded-lg p-6 bg-white shadow-lg">
+    <h3 class="text-xl font-semibold mb-4">Informations sur la commande</h3>
+    <div class="grid grid-cols-2 gap-x-6 text-gray-800">
+      <div>
+        <p class="text-sm font-semibold">Reférence:</p>
+        <p class="text-lg">{{ order.reference }}</p>
+      </div>
+      <div>
+        <p class="text-sm font-semibold">Email:</p>
+        <p class="text-lg">{{ order.email }}</p>
+      </div>
+      <div>
+        <p class="text-sm font-semibold">Nom et Prénom:</p>
+        <p class="text-lg">{{ order.firstName }} {{ order.lastName }}</p>
+      </div>
+      <div>
+        <p class="text-sm font-semibold">Numéro de téléphone:</p>
+        <p class="text-lg">{{ order.phoneNumber }}</p>
+      </div>
+      <div>
+        <p class="text-sm font-semibold">Prix Total:</p>
+        <p class="text-lg">{{ order.totalPrice | customCurrency }}</p>
+      </div>
+      <div>
+        <p class="text-sm font-semibold">Date de Commande:</p>
+        <p class="text-lg">
+          {{ order.created_at | date : "dd/MM/yyyy HH:mm" }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <h3 class="text-xl font-semibold mb-4">Articles</h3>
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead>
+          <tr class="bg-blue-500 text-white">
+            <th class="py-2 px-3 text-left text-sm font-semibold">Reférence</th>
+            <th class="py-2 px-3 text-left text-sm font-semibold">Nom</th>
+            <th class="py-2 px-3 text-left text-sm font-semibold">Couleur</th>
+            <th class="py-2 px-3 text-left text-sm font-semibold">
+              Prix Unitaire
+            </th>
+            <th class="py-2 px-3 text-left text-sm font-semibold">Quantité</th>
+            <th class="py-2 px-3 text-left text-sm font-semibold">
+              Prix Total
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of order.orderItems; let even = even">
+            <tr [class.bg-gray-100]="even" [class.bg-white]="!even">
+              <td
+                class="py-3 px-4 text-sm text-gray-800 hover:underline hover:text-red-700 cursor-pointer"
+                [routerLink]="['/details', item.itemId]"
+              >
+                {{ item.reference }}
+              </td>
+              <td class="py-3 px-4 text-sm text-gray-800">{{ item.title }}</td>
+              <td class="py-3 px-4 text-sm text-gray-800">
+                {{ item.colorName }}
+              </td>
+              <td class="py-3 px-4 text-sm text-gray-800">
+                {{ item.unitPrice | customCurrency }}
+              </td>
+              <td class="py-3 px-4 text-sm text-gray-800">
+                {{ item.quantity }}
+              </td>
+              <td class="py-3 px-4 text-sm text-gray-800">
+                {{ item.totalPrice | customCurrency }}
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

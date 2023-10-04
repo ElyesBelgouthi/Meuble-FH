@@ -1,6 +1,5 @@
-<!-- cart-confirmation.component.html -->
 <div
-  class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-60 overflow-hidden p-4"
+  class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-60 backdrop-blur-md overflow-hidden p-4"
 >
   <div class="bg-white w-full max-w-md mx-auto rounded-lg shadow-md">
     <div class="p-6">
@@ -82,17 +81,18 @@
             Veuillez saisir un numéro valide
           </span>
         </div>
-        <div class="flex justify-end">
+        <div class="flex justify-end space-x-2">
           <button
             type="button"
-            class="bg-red-500 text-white px-4 py-2 rounded focus:outline-none focus:ring focus:border-red-300"
+            class="bg-red-500 text-white px-4 py-2 rounded focus:outline-none focus:ring focus:border-red-300 hover:bg-red-600"
             routerLink="../"
           >
             Annuler
           </button>
           <button
             type="submit"
-            class="bg-green-500 text-white px-4 py-2 rounded ml-2 focus:outline-none focus:ring focus:border-green-300"
+            class="bg-green-500 text-white px-4 py-2 rounded focus:outline-none focus:ring focus:border-green-300 hover:bg-green-600"
+            [disabled]="!form.valid"
           >
             Confirmer
           </button>

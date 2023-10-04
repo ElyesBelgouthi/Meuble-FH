@@ -27,9 +27,10 @@ export class CartService {
         new ItemCart(
           product.reference,
           product.title,
-          1,
+          product.quantity,
           product.color,
           product.price,
+          product.priceUC,
           product.path,
           product.id
         )
@@ -64,7 +65,16 @@ export class CartService {
 
   changeQuantity(index: number, value: number) {
     this.cart[index].quantity = value;
+    this.cart[index].price = value * this.cart[index].priceUC;
     localStorage.setItem('cart', JSON.stringify(this.cart));
     this.cartUpdated.emit(this.cart.length);
+  }
+
+  calcTotal(): number {
+    if (this.cart && this.cart.length > 0) {
+      return this.cart.reduce((acc, item) => acc + item.price, 0);
+    } else {
+      return 0;
+    }
   }
 }

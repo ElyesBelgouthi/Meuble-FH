@@ -65,7 +65,7 @@
     </div>
     <p class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Prix Unitaire</p>
     <p class="text-orange-600 font-bold text-2xl mt-2">
-      {{ item.price | currency : "TND" }}
+      {{ item.price | customCurrency }}
     </p>
 
     <div class="flex items-center mt-4">
@@ -73,7 +73,8 @@
         type="number"
         class="w-20 lg:w-24 h-16 border border-gray-400 rounded-md px-2 text-center text-gray-800 text-lg font-bold"
         min="1"
-        [(ngModel)]="quantity"
+        [value]="quantity"
+        (input)="changeQuantity($event)"
       />
 
       <button
