@@ -17,6 +17,7 @@ import { ItemsEditComponent } from './pages/admin-space/items/items-edit/items-e
 import { OrdersListComponent } from './pages/admin-space/orders/orders-list/orders-list.component';
 import { OrdersEditComponent } from './pages/admin-space/orders/orders-edit/orders-edit.component';
 import { CartConfirmationComponent } from './pages/cart/cart-confirmation/cart-confirmation.component';
+import { authGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'admin',
+    canActivate: [authGuard],
     component: AdminSpaceComponent,
     children: [
       { path: '', component: DashboardComponent },

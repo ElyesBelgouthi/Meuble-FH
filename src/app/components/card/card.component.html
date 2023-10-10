@@ -1,5 +1,6 @@
 <div
   class="border-2 w-60 h-80 cursor-pointer overflow-hidden transition-transform transform hover:scale-105 shadow-2xl"
+  *ngIf="item"
 >
   <div class="w-full h-1/2">
     <img [src]="src" class="object-cover w-full h-full" alt="image" />
@@ -11,18 +12,12 @@
     <h2 class="text-gray-600 mb-1 text-sm">
       {{ item.description | truncate : 3 }}
     </h2>
-    <h2 class="text-gray-600 mb-2 text-sm">
-      Dimensions: {{ item.height }}*{{ item.width }} cm²
-    </h2>
+
     <div class="flex justify-between items-center">
-      <h3 class="text-lg font-semibold text-orange-500">
-        {{ item.price | customCurrency }}
+      <h3 class="text-sm font-semibold text-gray-600">À partir de</h3>
+      <h3 class="text-lg font-semibold text-orange-500" *ngIf="item.dimensions">
+        {{ item.dimensions[0].price | customCurrency }}
       </h3>
-      <a
-        class="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-full transition-colors duration-300"
-        (click)="addToCart($event)"
-        ><i class="fa-solid fa-cart-plus"></i
-      ></a>
     </div>
   </div>
 </div>

@@ -87,7 +87,8 @@
             </option>
           </select>
         </div>
-        <div class="flex gap-2 flex-row">
+
+        <!-- <div class="flex gap-2 flex-row">
           <div class="mb-4">
             <label for="height" class="block text-gray-700 font-bold mb-2"
               >Hauteur</label
@@ -138,10 +139,111 @@
             *ngIf="!form.get('price')?.valid && form.get('price')?.touched"
             >Veuillez entrer un Prix valide</span
           >
+        </div> -->
+
+        <!-- Add a button to add new dimensions -->
+        <div class="" formArrayName="dimensions">
+          <button
+            type="button"
+            (click)="addDimension()"
+            class="mb-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            Ajouter une dimension
+          </button>
+
+          <div
+            *ngFor="let dimension of dimensions.controls; let i = index"
+            class="mb-4 p-4 border rounded-lg shadow-md"
+            [formGroupName]="i"
+            style="display: flex; flex-wrap: wrap"
+          >
+            <div
+              class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 pr-2"
+              style="flex: 1"
+            >
+              <div>
+                <label for="name" class="block text-gray-700 font-semibold"
+                  >Taille</label
+                >
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+                />
+              </div>
+            </div>
+            <div
+              class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 pr-2"
+              style="flex: 1"
+            >
+              <div>
+                <label for="height" class="block text-gray-700 font-semibold"
+                  >Hauteur</label
+                >
+                <input
+                  type="number"
+                  formControlName="height"
+                  class="border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+                />
+              </div>
+            </div>
+            <div
+              class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 pr-2"
+              style="flex: 1"
+            >
+              <div>
+                <label for="width" class="block text-gray-700 font-semibold"
+                  >Largeur</label
+                >
+                <input
+                  type="number"
+                  formControlName="width"
+                  class="border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+                />
+              </div>
+            </div>
+            <div
+              class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 pr-2"
+              style="flex: 1"
+            >
+              <div>
+                <label for="length" class="block text-gray-700 font-semibold"
+                  >Longueur</label
+                >
+                <input
+                  type="number"
+                  formControlName="length"
+                  class="border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+                />
+              </div>
+            </div>
+            <div
+              class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
+              style="flex: 1"
+            >
+              <div>
+                <label for="price" class="block text-gray-700 font-semibold"
+                  >Prix Unitaire</label
+                >
+                <input
+                  type="number"
+                  formControlName="price"
+                  class="border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500"
+                />
+              </div>
+            </div>
+
+            <button
+              type="button"
+              (click)="removeDimension(i)"
+              class="mt-2 px-4 py-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+            >
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
         </div>
-        <label for="width" class="block text-gray-700 font-bold"
-          >Couleurs</label
-        >
+
+        <label for="" class="block text-gray-700 font-bold">Couleurs</label>
         <div class="mb-4 flex flex-row flex-wrap gap-3" *ngIf="colors">
           <div *ngFor="let color of colors">
             <div class="w-1/4 px-2 flex flex-row gap-2 items-center">

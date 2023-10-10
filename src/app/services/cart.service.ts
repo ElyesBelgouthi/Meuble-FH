@@ -16,7 +16,9 @@ export class CartService {
   addToCart(product: ItemCart) {
     const itemIndex = this.cart.findIndex(
       (item) =>
-        item.reference === product.reference && item.color === product.color
+        item.reference === product.reference &&
+        item.color === product.color &&
+        item.dimension === product.dimension
     );
 
     if (itemIndex !== -1) {
@@ -29,6 +31,7 @@ export class CartService {
           product.title,
           product.quantity,
           product.color,
+          product.dimension,
           product.price,
           product.priceUC,
           product.path,
@@ -46,9 +49,17 @@ export class CartService {
     return this.cart;
   }
 
-  deleteItemFromCart(itemId: number, color: string) {
+  deleteCart() {
+    localStorage.removeItem('cart');
+    this.cartUpdated.emit(0);
+  }
+
+  deleteItemFromCart(itemId: number, color: string, dimension: string) {
     const itemIndex = this.cart.findIndex(
-      (item) => item.id === itemId && item.color === color
+      (item) =>
+        item.id === itemId &&
+        item.color === color &&
+        item.dimension === dimension
     );
 
     if (itemIndex !== -1) {

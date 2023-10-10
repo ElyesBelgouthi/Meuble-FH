@@ -68,8 +68,8 @@ export class CartComponent implements OnInit {
     this.total = this.cartService.calcTotal();
   }
 
-  deleteItemFromCart(itemId: number, color: string) {
-    this.cartService.deleteItemFromCart(itemId, color);
+  deleteItemFromCart(itemId: number, color: string, dimension: string) {
+    this.cartService.deleteItemFromCart(itemId, color, dimension);
     this.calcTotal();
   }
 

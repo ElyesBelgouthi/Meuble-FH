@@ -20,7 +20,7 @@ export class DetailsComponent implements OnInit {
   images: any[] = [];
   selectedColor: string = '';
   isLoading = true;
-  // colors = ['color-1.jpg', 'color-2.jpg', 'color-3.png'];
+  selectedDimension: number = 0;
   colorImages: any[] = [];
   colors!: Color[];
 
@@ -115,6 +115,10 @@ export class DetailsComponent implements OnInit {
     }
   }
 
+  selectDimension(index: number) {
+    this.selectedDimension = index;
+  }
+
   changeImage(index: number) {
     this.currentImage = this.images[index];
   }
@@ -130,8 +134,9 @@ export class DetailsComponent implements OnInit {
         this.item.title,
         this.quantity,
         this.selectedColor,
-        this.item.price * this.quantity,
-        this.item.price,
+        this.item.dimensions[this.selectedDimension].name,
+        this.item.dimensions[this.selectedDimension].price * this.quantity,
+        this.item.dimensions[this.selectedDimension].price,
         this.item.photos[0].path,
         this.item.id
       )

@@ -1,4 +1,5 @@
 import { Color } from './color.model';
+import { Dimension } from './dimension.model';
 import { Photo } from './photo.model';
 
 export class Item {
@@ -8,9 +9,8 @@ export class Item {
     public description: string,
     public category: string,
     public type: string,
-    public height: number,
-    public width: number,
-    public price: number,
+
+    public dimensions: Dimension[],
     public colors: Color[],
     public reference: string,
     public photos: Photo[]

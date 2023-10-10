@@ -37,17 +37,31 @@
     *ngIf="item"
   >
     <h1 class="text-4xl font-semibold text-gray-800">{{ item.title }}</h1>
-    <p class="text-gray-600 text-lg mt-2">
-      {{ item.description }}
-    </p>
+    <p class="text-gray-600 text-lg mt-2">{{ item.description }}</p>
+    <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Référence</h2>
+    <p class="text-gray-600 text-lg mt-2">{{ item.reference }}</p>
     <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Dimensions</h2>
-    <p class="text-gray-600 text-lg mt-2">
-      {{ item.height }} * {{ item.width }} cm²
-    </p>
+    <div class="flex lg:flex-col flex-wrap gap-4">
+      <div
+        class="border rounded-lg p-3 hover:shadow-md cursor-pointer"
+        *ngFor="let dimension of item.dimensions; let i = index"
+        (click)="selectDimension(i)"
+        [ngClass]="{ 'border-blue-500': selectedDimension === i }"
+      >
+        <p class="text-lg font-semibold text-gray-800">{{ dimension.name }}</p>
+        <p class="text-gray-600 text-lg">
+          <span *ngIf="dimension.height > 0">{{ dimension.height }} cm </span>
+          <span *ngIf="dimension.width > 0">* {{ dimension.width }} cm </span>
+          <span *ngIf="dimension.length > 0">* {{ dimension.length }} cm </span>
+        </p>
 
-    <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-2" *ngIf="colors">
-      Couleurs
-    </h2>
+        <p class="text-2xl font-semibold text-orange-600 mt-2">
+          {{ dimension.price | customCurrency }}
+        </p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Couleurs</h2>
     <div class="flex gap-4 flex-wrap">
       <button
         class="w-20 h-20 rounded-lg ring-1 ring-black"
@@ -63,10 +77,11 @@
         />
       </button>
     </div>
-    <p class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Prix Unitaire</p>
+
+    <!-- <p class="text-2xl font-semibold text-gray-800 mt-4 mb-2">Prix Unitaire</p>
     <p class="text-orange-600 font-bold text-2xl mt-2">
-      {{ item.price | customCurrency }}
-    </p>
+      {{ item.dimensions[selectedDimension].price | customCurrency }}
+    </p> -->
 
     <div class="flex items-center mt-4">
       <input

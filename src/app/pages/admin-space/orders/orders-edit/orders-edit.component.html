@@ -41,6 +41,7 @@
             <th class="py-2 px-3 text-left text-sm font-semibold">Reférence</th>
             <th class="py-2 px-3 text-left text-sm font-semibold">Nom</th>
             <th class="py-2 px-3 text-left text-sm font-semibold">Couleur</th>
+            <th class="py-2 px-3 text-left text-sm font-semibold">Dimension</th>
             <th class="py-2 px-3 text-left text-sm font-semibold">
               Prix Unitaire
             </th>
@@ -62,6 +63,9 @@
               <td class="py-3 px-4 text-sm text-gray-800">{{ item.title }}</td>
               <td class="py-3 px-4 text-sm text-gray-800">
                 {{ item.colorName }}
+              </td>
+              <td class="py-3 px-4 text-sm text-gray-800">
+                {{ item.dimension }}
               </td>
               <td class="py-3 px-4 text-sm text-gray-800">
                 {{ item.unitPrice | customCurrency }}

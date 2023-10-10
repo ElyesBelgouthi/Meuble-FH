@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ItemCart } from 'src/app/models/item-cart.model';
 import { Item } from 'src/app/models/item.model';
-import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-card',
@@ -11,22 +9,4 @@ import { CartService } from 'src/app/services/cart.service';
 export class CardComponent {
   @Input('item') item!: Item;
   @Input('src') src: any;
-
-  constructor(private cartService: CartService) {}
-  addToCart(event: any) {
-    event.stopPropagation();
-    this.cartService.addToCart(
-      new ItemCart(
-        this.item.reference,
-        this.item.title,
-
-        1,
-        '',
-        this.item.price,
-        this.item.price,
-        this.item.photos[0].path,
-        this.item.id
-      )
-    );
-  }
 }

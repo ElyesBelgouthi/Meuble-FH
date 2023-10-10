@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ItemCart } from 'src/app/models/item-cart.model';
+import { Order } from 'src/app/models/order.model';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 
@@ -14,6 +15,8 @@ import { OrderService } from 'src/app/services/order.service';
 export class CartConfirmationComponent implements OnInit {
   form!: FormGroup;
   cart!: ItemCart[];
+  showMailboxDialog = false;
+
   totalPrice: number = 0;
 
   constructor(
@@ -51,9 +54,19 @@ export class CartConfirmationComponent implements OnInit {
       formData.append('totalPrice', String(this.totalPrice));
       formData.append('cart', JSON.stringify(this.cart));
 
-      console.log('FormData:', formData);
-      this.orderService.addOrder(formData);
+      this.orderService.addOrder(formData).subscribe(
+        (order: Order) => {
+          this.showMailboxDialog = true;
+          this.cartService.deleteCart();
+        },
+        (error) => {
+          this.router.navigate(['/', 'cart']);
+        }
+      );
     }
+  }
+  closeMailboxDialog() {
+    this.showMailboxDialog = false;
     this.router.navigate(['/', 'cart']);
   }
 }

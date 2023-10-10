@@ -18,10 +18,8 @@ export class OrderService {
     return this.http.get<Order>(this.BaseURL + '/order/' + id);
   }
 
-  addOrder(formData: any) {
-    this.http
-      .post<Order>(this.BaseURL + '/order', formData)
-      .subscribe((order: Order) => {});
+  addOrder(formData: any): Observable<Order> {
+    return this.http.post<Order>(this.BaseURL + '/order', formData);
   }
 
   deleteOrder(id: number) {
