@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
 
       this.authenticationService.login(credentials).subscribe(
         (response: AuthResponse) => {
-          console.log(response);
           if (response) {
             localStorage.setItem('token', response.accessToken as string);
             this.router.navigate(['/admin']);
