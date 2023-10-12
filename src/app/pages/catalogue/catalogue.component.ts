@@ -13,6 +13,7 @@ export class CatalogueComponent implements OnInit {
   p: number = 1;
   items!: Item[];
   imagesSrc: any = {};
+  isLoading = true;
   filters = [
     {
       name: 'Categorie',
@@ -63,10 +64,10 @@ export class CatalogueComponent implements OnInit {
             );
           }
         }
+        this.isLoading = false; // Set isLoading to false once data is loaded
       });
     });
   }
-
   toggleFilter() {
     this.filterExpanded = !this.filterExpanded;
   }

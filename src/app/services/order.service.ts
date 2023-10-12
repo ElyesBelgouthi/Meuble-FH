@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environment';
 import { Order } from '../models/order.model';
@@ -6,16 +6,24 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
-  BaseURL: string = environment.API_URL;
-
+  private BaseURL: string = environment.API_URL;
+  private jwtToken!: string | null;
   constructor(private http: HttpClient) {}
 
   getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.BaseURL + '/order');
+    this.jwtToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`, // Replace with your actual token
+    });
+    return this.http.get<Order[]>(this.BaseURL + '/order', { headers });
   }
 
   getOrderById(id: number): Observable<Order> {
-    return this.http.get<Order>(this.BaseURL + '/order/' + id);
+    this.jwtToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`, // Replace with your actual token
+    });
+    return this.http.get<Order>(this.BaseURL + '/order/' + id, { headers });
   }
 
   addOrder(formData: any): Observable<Order> {
@@ -23,6 +31,10 @@ export class OrderService {
   }
 
   deleteOrder(id: number) {
-    this.http.delete(this.BaseURL + '/order/' + id);
+    this.jwtToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`, // Replace with your actual token
+    });
+    this.http.delete(this.BaseURL + '/order/' + id, { headers }).subscribe();
   }
 }

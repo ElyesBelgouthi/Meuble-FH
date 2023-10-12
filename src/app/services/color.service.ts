@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment';
@@ -6,7 +6,8 @@ import { Color } from '../models/color.model';
 
 @Injectable({ providedIn: 'root' })
 export class ColorService {
-  BaseURL: string = environment.API_URL;
+  private BaseURL: string = environment.API_URL;
+  private jwtToken!: string | null;
 
   constructor(private http: HttpClient) {}
 
@@ -19,14 +20,30 @@ export class ColorService {
   }
 
   updateColor(id: number, formData: any): Observable<Color> {
-    return this.http.patch<Color>(this.BaseURL + '/color/' + id, formData);
+    this.jwtToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`, // Replace with your actual token
+    });
+    return this.http.patch<Color>(this.BaseURL + '/color/' + id, formData, {
+      headers,
+    });
   }
 
   addColor(formData: any): Observable<Color> {
-    return this.http.post<Color>(this.BaseURL + '/color', formData);
+    this.jwtToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`, // Replace with your actual token
+    });
+    return this.http.post<Color>(this.BaseURL + '/color', formData, {
+      headers,
+    });
   }
 
   deleteColor(id: number): void {
-    this.http.delete(this.BaseURL + '/color/' + id).subscribe();
+    this.jwtToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`, // Replace with your actual token
+    });
+    this.http.delete(this.BaseURL + '/color/' + id, { headers }).subscribe();
   }
 }

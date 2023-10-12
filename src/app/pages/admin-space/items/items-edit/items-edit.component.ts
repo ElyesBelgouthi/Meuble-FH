@@ -117,7 +117,6 @@ export class ItemsEditComponent implements OnInit {
         this.pickedColors.splice(index, 1);
       }
     }
-    console.log(this.pickedColors);
   }
 
   onFileChange(event: any) {

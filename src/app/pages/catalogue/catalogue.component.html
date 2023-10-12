@@ -1,4 +1,7 @@
-<main class="min-h-screen bg-gray-50 lg:p-4 lg:relative">
+<div class="min-h-screen w-full" *ngIf="isLoading">
+  <app-loader></app-loader>
+</div>
+<main class="min-h-screen bg-gray-50 lg:p-4 lg:relative" *ngIf="!isLoading">
   <aside
     class="lg:max-w-[280px] lg:w-[280px] lg:mt-24 mt-20 lg:ml-6 bg-white p-4 rounded-lg shadow-2xl lg:fixed z-50"
   >

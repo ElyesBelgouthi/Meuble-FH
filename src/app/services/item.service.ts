@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment';
@@ -7,7 +7,8 @@ import { Params } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export default class ItemService {
-  BaseURL: string = environment.API_URL;
+  private BaseURL: string = environment.API_URL;
+  private jwtToken!: string | null;
 
   constructor(private http: HttpClient) {}
 
@@ -20,14 +21,28 @@ export default class ItemService {
   }
 
   updateItem(id: number, formData: any): Observable<Item> {
-    return this.http.patch<Item>(this.BaseURL + '/item/' + id, formData);
+    this.jwtToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`, // Replace with your actual token
+    });
+    return this.http.patch<Item>(this.BaseURL + '/item/' + id, formData, {
+      headers,
+    });
   }
 
   addItem(formData: any): Observable<Item> {
-    return this.http.post<Item>(this.BaseURL + '/item', formData);
+    this.jwtToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`, // Replace with your actual token
+    });
+    return this.http.post<Item>(this.BaseURL + '/item', formData, { headers });
   }
 
   deleteItem(id: number): void {
-    this.http.delete(this.BaseURL + '/item/' + id).subscribe();
+    this.jwtToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`, // Replace with your actual token
+    });
+    this.http.delete(this.BaseURL + '/item/' + id, { headers }).subscribe();
   }
 }
