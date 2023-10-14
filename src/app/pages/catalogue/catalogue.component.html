@@ -90,27 +90,13 @@
           type="text"
           placeholder="Rechercher"
           class="w-full py-3 px-6 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-dark text-gray-800 text-lg font-semibold"
+          (input)="onSearch($event)"
         />
         <button
           class="absolute right-0 top-0 mt-3 mr-3 text-gray-600 hover:text-blue-500 transition duration-300"
         >
           <i class="fa-solid fa-search"></i>
         </button>
-      </div>
-    </div>
-    <div class="relative inline-block max-w-sm">
-      <select
-        class="appearance-none bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-full shadow-lg leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-lg cursor-pointer"
-      >
-        <option value="" disabled selected>Tri</option>
-        <option value="priceUp">Prix Croissant</option>
-        <option value="priceDown">Prix Décroissant</option>
-        <option value="alphabetic">A &RightArrow; Z</option>
-      </select>
-      <div
-        class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4"
-      >
-        <i class="fa-solid fa-sort"></i>
       </div>
     </div>
 
@@ -122,7 +108,9 @@
     >
       <app-card
         *ngFor="
-          let item of items | paginate : { itemsPerPage: 12, currentPage: p }
+          let item of items
+            | customerSearch : searchText
+            | paginate : { itemsPerPage: 12, currentPage: p }
         "
         [item]="item"
         [src]="imagesSrc[item.id]"

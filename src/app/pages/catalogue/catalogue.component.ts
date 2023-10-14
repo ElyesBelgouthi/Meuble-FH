@@ -13,6 +13,8 @@ export class CatalogueComponent implements OnInit {
   p: number = 1;
   items!: Item[];
   imagesSrc: any = {};
+  searchText!: string;
+
   isLoading = true;
   filters = [
     {
@@ -87,6 +89,10 @@ export class CatalogueComponent implements OnInit {
 
     // Reload the page
     window.location.reload();
+  }
+
+  onSearch(event: any) {
+    this.searchText = event.target?.value;
   }
 
   updateSubcategories(categories: any, types: any) {

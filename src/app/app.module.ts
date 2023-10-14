@@ -34,6 +34,7 @@ import { ScrollToBottomDirective } from './scroll-to-bottom.directive';
 import { CartConfirmationComponent } from './pages/cart/cart-confirmation/cart-confirmation.component';
 import { OrderSearchPipe } from './pipes/order-search.pipe';
 import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
+import { CustomerSearchPipe } from './pipes/customer-search.pipe';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
     CartConfirmationComponent,
     OrderSearchPipe,
     CustomCurrencyPipe,
+    CustomerSearchPipe,
   ],
   imports: [
     BrowserModule,
