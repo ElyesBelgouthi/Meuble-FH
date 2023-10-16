@@ -92,9 +92,10 @@
               <input
                 type="number"
                 min="1"
+                max="100"
                 class="w-16 p-2 border border-gray-300 rounded"
                 [value]="item.quantity"
-                (input)="changeQuantity(i + 8 * (p - 1), $event)"
+                (input)="changeQuantity(i + 8 * (p - 1), $event, item)"
               />
             </div>
 

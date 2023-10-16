@@ -73,8 +73,15 @@ export class CartComponent implements OnInit {
     this.calcTotal();
   }
 
-  changeQuantity(index: number, event: any) {
-    const value: number = parseInt(event.target.value);
+  changeQuantity(index: number, event: any, item: ItemCart) {
+    let value: number = parseInt(event.target.value);
+    if (value > 100) {
+      item.quantity = 100;
+      value = 100;
+    } else if (!value || value < 1) {
+      item.quantity = 1;
+      value = 1;
+    }
     this.cartService.changeQuantity(index, value);
   }
 }

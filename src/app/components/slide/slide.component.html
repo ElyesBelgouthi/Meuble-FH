@@ -25,7 +25,11 @@
     <h1 class="text-lg font-semibold text-beige mb-4">{{ slide.title }}</h1>
     <p class="text-gray-50 text-sm leading-7">
       {{ slide.description | truncate }}
-      <a href="#" class="underline text-beige hover:text-blue-300"
+      <a
+        href="#"
+        class="underline text-beige hover:text-blue-300"
+        [routerLink]="slide.routeTo"
+        [queryParams]="slide.queryParams"
         >Voir plus ...</a
       >
     </p>

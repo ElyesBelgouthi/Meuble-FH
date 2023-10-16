@@ -35,6 +35,7 @@ import { CartConfirmationComponent } from './pages/cart/cart-confirmation/cart-c
 import { OrderSearchPipe } from './pipes/order-search.pipe';
 import { CustomCurrencyPipe } from './pipes/custom-currency.pipe';
 import { CustomerSearchPipe } from './pipes/customer-search.pipe';
+import { BackBtnComponent } from './components/back-btn/back-btn.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { CustomerSearchPipe } from './pipes/customer-search.pipe';
     OrderSearchPipe,
     CustomCurrencyPipe,
     CustomerSearchPipe,
+    BackBtnComponent,
   ],
   imports: [
     BrowserModule,

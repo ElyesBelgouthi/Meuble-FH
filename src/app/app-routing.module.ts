@@ -28,7 +28,7 @@ const routes: Routes = [
     children: [{ path: 'confirmation', component: CartConfirmationComponent }],
   },
   { path: 'details/:id', component: DetailsComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'f47ac10b-58cc-4372-a567-0e02b2c3d479', component: LoginComponent },
   {
     path: 'admin',
     canActivate: [authGuard],
